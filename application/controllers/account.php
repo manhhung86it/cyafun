@@ -26,8 +26,8 @@ class Account extends MY_Controller {
             $error = TRUE;
         }
         $this->load->model('user_model', 'user');
-        $dataWhere['email'] = $email;
-        $dataWhere['forgotpass_key'] = $key;
+        $dataWhere['us_email'] = $email;
+        $dataWhere['us_key'] = $key;
         $user = $this->user->getUser($dataWhere);
         if (empty($user)) {
             $error = TRUE;
@@ -38,8 +38,8 @@ class Account extends MY_Controller {
             $rePassword = $posts['re_password'];
             $validate = $this->user_manager->validPassword($password, $rePassword);
             if (empty($validate)) {
-                $dataUpdate['password'] = md5($password);
-                $result = $this->user->update($dataUpdate, $user['id']);
+                $dataUpdate['us_password'] = md5($password);
+                $result = $this->user->update($dataUpdate, $user['us_id']);
                 redirect(site_url('session/login'));
             } else {
                 $this->data['data_error'] = $validate;

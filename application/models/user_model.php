@@ -23,7 +23,7 @@ class User_model extends CI_Model {
     function getUserByEmail($email) {
         $this->db->select('*');
         $this->db->from('users');
-        $this->db->where('email', $email);
+        $this->db->where('us_email', $email);
         $query = $this->db->get();
         return $query->row_array();
     }
@@ -39,8 +39,8 @@ class User_model extends CI_Model {
     }
 
     function update($data, $id) {
-        $this->db->set('date_modified', 'NOW()', FALSE);
-        $this->db->where('id', $id);
+//        $this->db->set('date_modified', 'NOW()', FALSE);
+        $this->db->where('us_id', $id);
         $this->db->update('users', $data);
     }
 

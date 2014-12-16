@@ -68,7 +68,7 @@ class User_manager {
 
     public function loginValidate($username, $pass) {
         $dataResult = 1;
-        if (empty($firstname) || empty($pass)) {
+        if (empty($username) || empty($pass)) {
             $dataResult = 0;
             return $dataResult;
         }
@@ -100,16 +100,15 @@ class User_manager {
 
         if (!empty($user)) {
             $dataResult['success'] = 1;
-            $dataUpdate['forgotpass_key'] = $this->CI->tool->getGenerateKey();
-            $this->CI->user->update($dataUpdate, $user['id']);
+            $dataUpdate['us_key'] = $this->CI->tool->getGenerateKey();
+            $this->CI->user->update($dataUpdate, $user['us_id']);
             $this->CI->load->library('mail');
 
-            $mailTo['name'] = $user['firstname'] . ' ' . $user['lastname'];
+            $mailTo['name'] = $user['us_username'];
             $mailTo['email'] = $email;
 
-            $dataEmail['firstname'] = $user['firstname'];
-            $dataEmail['lastname'] = $user['lastname'];
-            $dataEmail['forgot_link'] = site_url('account/resetpass?key=' . $dataUpdate['forgotpass_key'] . '&email=' . $email);
+            $dataEmail['username'] = $user['us_username'];
+            $dataEmail['forgot_link'] = site_url('account/resetpass?key=' . $dataUpdate['us_key'] . '&email=' . $email);
 
             sentMailTemp($mailTo, 'forgot_password', $dataEmail);
         } else {
