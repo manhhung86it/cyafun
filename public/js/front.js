@@ -229,10 +229,6 @@ $().ready(function() {
                 required: true,
                 minlength: 3,
             },
-            Inputownername: {
-                required: true,
-                minlength: 3,
-            },
             InputEmail: {
                 required: true,
                 email: true,
@@ -247,19 +243,9 @@ $().ready(function() {
             InputRePassword: {
                 equalTo: "#InputPassword"
             },
-            phone: {
-                digits: true,
-            },
             TermOfUse: {
                 required: true,
             },
-            Inputsuburb: {
-                required: true,
-            },
-            Inputpostcode: {
-                required: true,
-                digits: true,
-            }
         },
         messages: {
             InputLastName: {
@@ -268,9 +254,6 @@ $().ready(function() {
             InputFirstname: {
                 required: 'Please enter your first name',
                 minlength: 3,
-            },
-            Inputownername: {
-                required: 'Please enter your name of restaurant',
             },
             InputEmail: {
                 required: "Email invalid",
@@ -286,19 +269,9 @@ $().ready(function() {
             InputRePassword: {
                 equalTo: "Passwords do not match. Please re-enter your password"
             },
-            phone: {
-                digits: 'Please enter valid phone number',
-            },
             TermOfUse: {
                 required: 'Please read and accept the terms of use',
             },
-            Inputsuburb: {
-                required: 'Please enter suburb',
-            },
-            Inputpostcode: {
-                required: 'Please enter postcode',
-                digits: 'Please enter valid postcode number',
-            }
         },
         errorPlacement: function(error, element) {
             var name = $(element).attr("name");

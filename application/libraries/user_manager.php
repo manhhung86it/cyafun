@@ -66,15 +66,15 @@ class User_manager {
         $this->CI->session->set_userdata('admin', $user);
     }
 
-    public function loginValidate($email, $pass) {
+    public function loginValidate($firstname, $pass) {
         $dataResult = 1;
-        if (empty($email) || empty($pass) || !valid_email($email)) {
+        if (empty($firstname) || empty($pass)) {
             $dataResult = 0;
             return $dataResult;
         }
         $this->CI->load->model('user_model', 'user');
 
-        $user = $this->CI->user->getUserLogin($email, $pass);
+        $user = $this->CI->user->getUserLogin($firstname, $pass);
         if (!empty($user)) {
             $this->updateUserSession($user);
         } else {
@@ -155,22 +155,16 @@ class User_manager {
         return $phone_return;
     }
 
-    public function registerUser($button_term, $firstname, $name, $email, $pass, $repass, $phone, $nameRes, $suburb, $postcode) {
+    public function registerUser($button_term, $firstname, $name, $email, $pass, $repass) {
         $error = array();
         if ($button_term == false) {
             $error['TermOfUse'] = 'Please read and accept the terms of use';
         }
+        $select_user_by_name = $this->CI->My_model->select_where_c("users", array("us_username" => $firstname));
+        if (!empty($select_user_by_name))
+            $error['firstname'] = 'user name already exists';
         if (empty($firstname)) {
             $error['firstname'] = 'Please enter your first name';
-        }
-        if (empty($suburb)) {
-            $error['suburb'] = 'Please enter suburb';
-        }
-        if (empty($postcode)) {
-            $error['postcode'] = 'Please enter postcode';
-        }
-        if (!empty($postcode) && !is_numeric($postcode)) {
-            $error['postcode'] = 'Please enter valid postcode';
         }
         if (empty($name)) {
             $error['lastname'] = 'Please enter your last name';
@@ -178,15 +172,9 @@ class User_manager {
         if (empty($email) || !valid_email($email)) {
             $error['email'] = 'Email invalid';
         }
-        $select_user = $this->CI->My_model->select_where_c("users", array("email" => $email));
+        $select_user = $this->CI->My_model->select_where_c("users", array("us_email" => $email));
         if (!empty($select_user))
             $error['email'] = 'Email already exists';
-        if (!empty($phone) && !is_numeric($phone)) {
-            $error['phone'] = 'Please enter valid phone number';
-        }
-        if (empty($nameRes)) {
-            $error['nameRes'] = 'Please enter name of Restaurant';
-        }
         if ($pass != $repass) {
             $error['repassword'] = 'Passwords do not match. Please re-enter your password';
         }

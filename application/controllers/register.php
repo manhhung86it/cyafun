@@ -28,47 +28,30 @@ class Register extends MY_Controller {
         $Password = $this->input->post("InputPassword");
         $RePassword = $this->input->post("InputRePassword");
         $Email = $this->input->post("InputEmail");
-        $Phone = $this->input->post("InputPhone");
-
-        $address1 = $this->input->post("Inputaddress1");
-        $address2 = $this->input->post("Inputaddress2");
-        $suburb = $this->input->post("Inputsuburb");
-        $postcode = (int) $this->input->post("Inputpostcode");
-        $state = $this->input->post("Inputstate");
         $ownername = $this->input->post("Inputownername");
         $button_term = $this->input->post("TermOfUse");
         $redirect = $this->input->get('redirect');
         $this->user_manager->login_authenticate();
         if (isset($_POST["submit"])) {
-            $validate = $this->user_manager->registerUser($button_term, $firstname, $LastName, $Email, $Password, $RePassword, $Phone, $ownername, $suburb, $postcode);
+            $validate = $this->user_manager->registerUser($button_term, $firstname, $LastName, $Email, $Password, $RePassword);
             if (empty($validate)) {
                 $to_add = array(
-                    "password" => md5($Password),
-                    "firstname" => $firstname,
-                    "lastname" => $LastName,
-                    "email" => $Email,
-                    "date_added" => date('Y-m-d H:i:s', now()),
-                    "phone" => $Phone
+                    "us_password" => md5($Password),
+                    "us_username" => $firstname,
+                    "us_name_display" => $LastName,
+                    "us_email" => $Email,
+                    "us_date_created" => date('Y-m-d H:i:s', now()),
+                    "us_status" => 1,
+                    "us_balance" => 0
                 );
-                $select_user = $this->My_model->select_where_c("users", array("email" => $Email));
-                if ($select_user) {
+                $select_user_by_name = $this->My_model->select_where_c("users", array("us_username" => $firstname));
+                $select_user = $this->My_model->select_where_c("users", array("us_email" => $Email));
+                if ($select_user || $select_user_by_name) {
                     $this->data['info'] = 'this email address already exist';
                 } else {
                     $insert = $this->My_model->inserting("users", $to_add);
-                    $insert_id = $this->db->insert_id();
                     if ($insert == TRUE) {
-                        $add_restaurant = array(
-                            'user_id' => $insert_id,
-                            'address1' => $address1,
-                            'address2' => $address2,
-                            'suburb' => $insert_id,
-                            'postcode' => $address1,
-                            'state' => $address2,
-                            'name' => $ownername,
-                            'phone' => $Phone
-                        );
-                        $insert2 = $this->My_model->inserting("restaurant", $add_restaurant);
-                        $result = $this->user_manager->loginValidate($Email, $Password);
+                        $result = $this->user_manager->loginValidate($firstname, $Password);
                         if ($result == 1) {
                             if (empty($redirect))
                                 redirect(site_url('dashboard'));

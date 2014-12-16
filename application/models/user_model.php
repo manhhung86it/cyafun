@@ -14,8 +14,8 @@ class User_model extends CI_Model {
     function getUserLogin($email, $password) {
         $this->db->select('*');
         $this->db->from('users');
-        $this->db->where('email', $email);
-        $this->db->where('password', md5($password));
+        $this->db->where('us_username', $email);
+        $this->db->where('us_password', md5($password));
         $query = $this->db->get();
         return $query->row_array();
     }
