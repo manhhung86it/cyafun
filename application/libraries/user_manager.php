@@ -281,7 +281,7 @@ class User_manager {
         $error = array();
 
         $checkpass = $this->CI->user->getUserById($id);
-        if (md5($user['oldpass']) != $checkpass['password']) {
+        if (md5($user['oldpass']) != $checkpass['us_password']) {
             $error['oldpass'] = 'Old password incorrect';
         }
 

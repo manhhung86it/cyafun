@@ -53,7 +53,7 @@ class User_model extends CI_Model {
     public function getUserById($id, $fields = '*') {
         $this->db->select($fields);
         $this->db->from('users');
-        $this->db->where('id', $id);
+        $this->db->where('us_id', $id);
 
         $query = $this->db->get();
         $user = $query->row_array();

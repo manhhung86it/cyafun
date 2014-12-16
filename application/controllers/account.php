@@ -90,10 +90,10 @@ class Account extends MY_Controller {
         $posts = $this->input->post();
         if ($posts) {
             $dataPost = $posts;
-            $validate = $this->user_manager->changepassValidate($dataPost, $this->auth['id']);
+            $validate = $this->user_manager->changepassValidate($dataPost, $this->auth['us_id']);
             if (empty($validate)) {
-                $dataUser['password'] = md5($posts['newpass']);
-                $this->user->update($dataUser, $this->auth['id']);
+                $dataUser['us_password'] = md5($posts['newpass']);
+                $this->user->update($dataUser, $this->auth['us_id']);
                 $this->data['updatepass'] = 'change password success';
             } else {
                 $this->data['data_error'] = $validate;
