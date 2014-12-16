@@ -5,7 +5,7 @@
 | ------------------------------------------------------------------- 
 | Configuration of outgoing mail server. 
 | */   
-$config['email_from']='no-reply@restaurants.cyahost.com';  
+$config['email_from']='hasonbinh.90@gmail.com';  
 $config['email_contact_from']='kienhatay90@gmail.com';  
 $config['sender']='restaurants';  
 
