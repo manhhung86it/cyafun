@@ -14,7 +14,7 @@
                         
                     <div class="email-login-icon">
                         <i class="fa fa-user"></i>
-                        <input type="text" placeholder="Enter your Email" name="email" id="email">
+                        <input type="text" placeholder="Enter username" name="username" id="username">
                     </div>
                         
                     <div class="icon-pass-login">

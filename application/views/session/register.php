@@ -14,9 +14,9 @@
                     <div class="logo-register"><img src="<?php echo base_url(); ?>public/img/login-logo.png" alt="" title="" ><span>Personal</span></div>
                     <div class="form-group form-register">
                         <div class="register-input">
-                            <label for="InputFirstname">User Name *:</label>
+                            <label for="InputFirstname">Username *:</label>
                             <div class="input-group">
-                                <i class="fa fa-user"></i><input type="text" class="form-control input-lg input-register" name="InputFirstname" id="InputFirstname" placeholder="Enter First Name">
+                                <i class="fa fa-user"></i><input type="text" class="form-control input-lg input-register" name="InputUsername" id="InputUsername" placeholder="Enter Username">
                             </div>
                             <?php if (!empty($data_error['firstname'])): ?>
                                 <label for="firstname" class="error"><?php echo $data_error['firstname'] ?></label>
@@ -45,7 +45,7 @@
                         <div class="register-input">
                             <label for="InputLastName">Name Display *:</label>
                             <div class="input-group">
-                                <i class="fa fa-user"></i><input type="text" class="form-control input-register" name="InputLastName" id="InputLastName" placeholder="Enter Last Name" required>
+                                <i class="fa fa-user"></i><input type="text" class="form-control input-register" name="InputDisplayName" id="InputDisplayName" placeholder="Enter Display Name" required>
                             </div>
                             <?php if (!empty($data_error['lastname'])): ?>
                                 <label for="lastname" class="error"><?php echo $data_error['lastname'] ?></label>

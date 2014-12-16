@@ -17,10 +17,10 @@ class Session extends MY_Controller {
         $this->user_manager->login_authenticate();
         $posts = $this->input->post();
         if ($posts) {
-            $email = $posts['email'];
+            $username = $posts['username'];
             $password = $posts['password'];
             $remember = isset($_POST['remember']);
-            $result = $this->user_manager->loginValidate($email, $password);
+            $result = $this->user_manager->loginValidate($username, $password);
             if ($result == 1) {
                 if (empty($redirect))
                     redirect(site_url('dashboard'));

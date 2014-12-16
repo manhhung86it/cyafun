@@ -66,7 +66,7 @@ class User_manager {
         $this->CI->session->set_userdata('admin', $user);
     }
 
-    public function loginValidate($firstname, $pass) {
+    public function loginValidate($username, $pass) {
         $dataResult = 1;
         if (empty($firstname) || empty($pass)) {
             $dataResult = 0;
@@ -74,7 +74,7 @@ class User_manager {
         }
         $this->CI->load->model('user_model', 'user');
 
-        $user = $this->CI->user->getUserLogin($firstname, $pass);
+        $user = $this->CI->user->getUserLogin($username, $pass);
         if (!empty($user)) {
             $this->updateUserSession($user);
         } else {
@@ -155,19 +155,21 @@ class User_manager {
         return $phone_return;
     }
 
-    public function registerUser($button_term, $firstname, $name, $email, $pass, $repass) {
+    public function registerUser($button_term, $username, $name, $email, $pass, $repass) {
         $error = array();
         if ($button_term == false) {
             $error['TermOfUse'] = 'Please read and accept the terms of use';
         }
-        $select_user_by_name = $this->CI->My_model->select_where_c("users", array("us_username" => $firstname));
+        $select_user_by_name = $this->CI->My_model->select_where_c("users", array("us_username" => $username));
         if (!empty($select_user_by_name))
-            $error['firstname'] = 'user name already exists';
-        if (empty($firstname)) {
-            $error['firstname'] = 'Please enter your first name';
+            $error['username'] = 'user name already exists';
+        
+        if (empty($username)) {
+            $error['username'] = 'Please enter username';
         }
+        
         if (empty($name)) {
-            $error['lastname'] = 'Please enter your last name';
+            $error['displayname'] = 'Please enter display name';
         }
         if (empty($email) || !valid_email($email)) {
             $error['email'] = 'Email invalid';

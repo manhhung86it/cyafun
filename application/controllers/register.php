@@ -23,8 +23,8 @@ class Register extends MY_Controller {
     public function index() {
         $this->load->library('form_validation');
         $this->load->helper('date');
-        $firstname = $this->input->post("InputFirstname");
-        $LastName = $this->input->post("InputLastName");
+        $username = $this->input->post("InputUsername");
+        $displayName = $this->input->post("InputDisplayName");
         $Password = $this->input->post("InputPassword");
         $RePassword = $this->input->post("InputRePassword");
         $Email = $this->input->post("InputEmail");
@@ -33,25 +33,25 @@ class Register extends MY_Controller {
         $redirect = $this->input->get('redirect');
         $this->user_manager->login_authenticate();
         if (isset($_POST["submit"])) {
-            $validate = $this->user_manager->registerUser($button_term, $firstname, $LastName, $Email, $Password, $RePassword);
+            $validate = $this->user_manager->registerUser($button_term, $username, $displayName, $Email, $Password, $RePassword);
             if (empty($validate)) {
                 $to_add = array(
                     "us_password" => md5($Password),
-                    "us_username" => $firstname,
-                    "us_name_display" => $LastName,
+                    "us_username" => $username,
+                    "us_name_display" => $displayName,
                     "us_email" => $Email,
                     "us_date_created" => date('Y-m-d H:i:s', now()),
                     "us_status" => 1,
                     "us_balance" => 0
                 );
-                $select_user_by_name = $this->My_model->select_where_c("users", array("us_username" => $firstname));
+                $select_user_by_name = $this->My_model->select_where_c("users", array("us_username" => $username));
                 $select_user = $this->My_model->select_where_c("users", array("us_email" => $Email));
                 if ($select_user || $select_user_by_name) {
                     $this->data['info'] = 'this email address already exist';
                 } else {
                     $insert = $this->My_model->inserting("users", $to_add);
                     if ($insert == TRUE) {
-                        $result = $this->user_manager->loginValidate($firstname, $Password);
+                        $result = $this->user_manager->loginValidate($username, $Password);
                         if ($result == 1) {
                             if (empty($redirect))
                                 redirect(site_url('dashboard'));
