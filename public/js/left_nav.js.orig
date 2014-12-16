@@ -1,0 +1,20 @@
+$(document).ready(function() {
+    $("#btn_show_hide_nav").click(function() {
+        showHideLeftNav(0);
+    });
+    $(".wrap-content > .main-content").click(function() {
+        showHideLeftNav(1);
+    });
+});
+
+function showHideLeftNav(cls_nav) {
+    if ($('.wrap-left-nav').hasClass('shiftnav-open-target') || cls_nav) {
+        $('.wrap-left-nav').removeClass('shiftnav-open-target');
+        $('.wrap-content').removeClass('shiftnav-open-target');
+        $('.navbar-brand').show();
+    } else {
+        $('.wrap-left-nav').addClass('shiftnav-open-target');
+        $('.wrap-content').addClass('shiftnav-open-target');
+        $('.navbar-brand').hide();
+    }
+}
