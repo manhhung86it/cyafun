@@ -20,10 +20,7 @@ class User_manager {
     public function retaurant_authenticate($redirect = null) {
         $auth = $this->CI->session->userdata('auth');
         if (empty($auth))
-            redirect(site_url('session/login?redirect=' . $redirect));
-        if ($auth['parent_id'] != 0) {
-            redirect(site_url('dashboard'));
-        }
+            redirect(site_url('session/login?redirect=' . $redirect));        
     }
 
     public function login_authenticate() {
