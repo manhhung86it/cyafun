@@ -20,7 +20,7 @@ class User_manager {
     public function retaurant_authenticate($redirect = null) {
         $auth = $this->CI->session->userdata('auth');
         if (empty($auth))
-            redirect(site_url('session/login?redirect=' . $redirect));        
+            redirect(site_url('session/login?redirect=' . $redirect));
     }
 
     public function login_authenticate() {
@@ -159,11 +159,11 @@ class User_manager {
         $select_user_by_name = $this->CI->My_model->select_where_c("users", array("us_username" => $username));
         if (!empty($select_user_by_name))
             $error['username'] = 'user name already exists';
-        
+
         if (empty($username)) {
             $error['username'] = 'Please enter username';
         }
-        
+
         if (empty($name)) {
             $error['displayname'] = 'Please enter display name';
         }
@@ -187,45 +187,26 @@ class User_manager {
         return $error;
     }
 
-    public function validUserAccount($data) {
+    public function validUserAccount($data, $file) {
         $error = array();
-        if (empty($data['firstname'])) {
-            $error['firstname'] = 'Please enter your firstname';
-        }
-
-        if (empty($data['lastname'])) {
-            $error['lastname'] = 'Please enter your lastname';
+        if (!empty($file['tmp_name']))
+            if (!getimagesize($file['tmp_name'])) {
+                $error['image'] = 'Please upload image type';
+            }
+        if (empty($data['nameDisplay'])) {
+            $error['nameDisplay'] = 'Please enter your name display';
         }
         if (empty($data['email']) || !valid_email($data['email'])) {
             $error['email'] = 'Email invalid';
         }
-
+        $this->CI->load->model('user_model', 'user');
         $auth = $this->CI->session->userdata('auth');
 
-        $emailExistsWhere['email'] = $data['email'];
-        $emailExistsWhere['id !='] = $auth['id'];
+        $emailExistsWhere['us_email'] = $data['email'];
+        $emailExistsWhere['us_id !='] = $auth['us_id'];
         $checkEmailExists = $this->CI->user->getUser($emailExistsWhere);
         if (!empty($checkEmailExists))
             $error['email'] = 'Email already exists';
-
-
-        $phone_validate = preg_match('/^0\d{10}$/', $data['phone']);
-        if (empty($data['phone']) || !is_numeric($data['phone'])) {
-            $error['phone'] = 'Please enter numeric characers only';
-        }
-        if (!empty($data['password'])) {
-            if ($data['password'] != $data['re_password']) {
-                $error['re_password'] = 'Passwords do not match. Please re-enter your password';
-            }
-            $containsLetter = preg_match('/[a-zA-Z]/', $data['password']);
-            $containsDigit = preg_match('/\d/', $data['password']);
-            if (empty($data['password']) || strlen($data['password']) < 7) {
-                $error['password'] = 'Minimum of 7 characters.  At least one must be numeric and at least one must be alpha';
-            }
-            if (!$containsLetter || !$containsDigit) {
-                $error['password'] = 'Minimum of 7 characters.  At least one must be numeric and at least one must be alpha';
-            }
-        }
         return $error;
     }
 

@@ -1324,6 +1324,17 @@ div.ppt {
     .save-order-hidden, .btn-back-save-order-hidden{
         display : block !important;
     }
+    .setting-container-title-hidden{
+        display: none;
+    }
+    .setting-container-title{
+        display: block !important;
+        text-align: center !important;
+        border-bottom: none !important;
+    }
+    .setting-dashboard-right{
+        padding-top: 20px;
+    }
 
 }
 
@@ -1668,41 +1679,54 @@ div.ppt {
     font-family: Lato;
     font-size: 13px;
 }
-.setting-dashboard{
-    margin: 0px;
-    border: 1px solid #e5e5e5;
-    border-radius: 10px;
-}
 .setting-dashboard i{
     font-size: 2em;
+    padding-left: 5px;
+}
+.setting-dashboard-left{
+    text-align: center;
+}
+.setting-dashboard-right{
+    border-left: 1px solid #e5e5e5;    
+}
+.setting-container-title{
+    display: none;
 }
 .setting-dashboard-content{
     min-height: 50px;
-    line-height: 50px;
-    margin-left: 10px;
-    margin-right: 10px;
+    line-height: 40px;
     border-bottom: 1px solid #e5e5e5;
 }
+.setting-dashboard-content-right{
+    min-height: 50px;
+    line-height: 40px;
+}
 .setting-dashboard-icon{
-    padding-top: 13px;
-    text-align: center;
+    text-align: right;
 }
 .setting-container{
     padding-top: 40px;
     padding-bottom: 30px;
 }
-.setting-dashboard-link a{
-    color: #5b5b5b;
+.setting-dashboard-icon,
+.setting-dashboard-link,
+.setting-dashboard-content-input{
     font-size: 14px;
     font-family: Lato;
-    font-weight: bold;
+    padding-top: 8px;
+}
+.setting-dashboard-link a{
+    color: red;
+    font-size: 14px;
+    font-family: Lato;
 }
 .setting-container h2{
-    border-bottom: none;
+    border-bottom: 2px solid red;
     font-size: 24px;
     font-family: Lato;
     font-weight: normal;
     color: #57b125;
+    text-align: left;
 }
 .more-order,.more-order a {
     text-decoration: underline;

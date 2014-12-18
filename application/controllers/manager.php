@@ -11,9 +11,11 @@ class Manager extends MY_Controller {
         $action = $this->router->fetch_method();
         $this->user_manager->retaurant_authenticate(mybase64_encode($controller . '/' . $action));
     }
-    
+
     public function setting() {
-         $this->user_manager->authenticate();
+        $this->user_manager->authenticate();
+        $this->load->model('user_model', 'user');
+        $this->data['userInfo'] = $this->user->getUserById($this->auth['us_id']);
         $this->load('front_layout', 'setting');
     }
 
@@ -179,7 +181,7 @@ class Manager extends MY_Controller {
 
         echo json_encode($jsonArray);
     }
-    
+
     public function update_user($id = 0) {
         $this->load->model('user_model', 'user');
         $this->load->library('user_manager');
@@ -261,7 +263,7 @@ class Manager extends MY_Controller {
             $this->user->delete($dataDelete);
         }
     }
-   
+
     public function locations() {
         $this->data['success'] = $this->session->flashdata('success');
         $this->load('front_layout', 'manager/locations');

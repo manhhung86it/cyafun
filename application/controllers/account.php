@@ -53,27 +53,32 @@ class Account extends MY_Controller {
         $this->load->model('user_model', 'user');
         $this->load->library('user_manager');
 
-        $user = $this->user->getUserById($this->auth['id']);
-        $dataPost['firstname'] = $user['firstname'];
-        $dataPost['lastname'] = $user['lastname'];
-        $dataPost['email'] = $user['email'];
-        $dataPost['phone'] = $user['phone'];
-
+        $user = $this->user->getUserById($this->auth['us_id']);
+        $dataPost['us_username'] = $user['us_username'];
+        $dataPost['us_name_display'] = $user['us_name_display'];
+        $dataPost['us_email'] = $user['us_email'];
+        $dataPost['us_avatar'] = $user['us_avatar'];
         $posts = $this->input->post();
+        $dir = PUBLICPATH . '/upload/';
         if ($posts) {
-            $dataPost = $posts;
-            $validate = $this->user_manager->validUserAccount($dataPost);
+            $dataUserPost = $posts;
+            $file = $_FILES['image'];
+            if (!empty($file))
+                $tmp_name = $file["tmp_name"];
+            $validate = $this->user_manager->validUserAccount($dataUserPost, $file);
             if (empty($validate)) {
-                $dataUser['firstname'] = $dataPost['firstname'];
-                $dataUser['lastname'] = $dataPost['lastname'];
-                $dataUser['email'] = $dataPost['email'];
-                $dataUser['phone'] = $dataPost['phone'];
-                if (!empty($dataPost['password']))
-                    $dataUser['password'] = md5($dataPost['password']);
-                $this->user->update($dataUser, $this->auth['id']);
+                $dataUser['us_name_display'] = $dataUserPost['nameDisplay'];
+                $dataUser['us_email'] = $dataUserPost['email'];
+                if (!empty($file)) {
+                    $name = $this->auth['us_id'] . $file["name"];
+                    if (move_uploaded_file($tmp_name, "$dir/$name")) {
+                        $dataUser['us_avatar'] = $name;
+                    }
+                }
+                $this->user->update($dataUser, $this->auth['us_id']);
                 $this->session->set_flashdata('success', 'Update information success');
                 redirect(site_url('account/account'));
-            }else {
+            } else {
                 $this->data['data_error'] = $validate;
             }
         }
