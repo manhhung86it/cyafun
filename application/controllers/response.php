@@ -8,6 +8,9 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
+require_once("nap_the/libs/nusoap.php");
+include_once('nap_the/entries.php');
+
 class Response extends MY_Controller {
 
     public function __construct() {
@@ -26,6 +29,37 @@ class Response extends MY_Controller {
             'paid_curency' => 'VND',
             'rate' => '0.5'
         );
+        
+        $pin = '123456789';
+        $pin = str_replace('-', '', $pin);
+        $pin = str_replace(' ', '', $pin);
+        $serial = '12345678912';
+        $serial = str_replace('-', '', $serial);
+        $serial = str_replace(' ', '', $serial);
+        $serviceProvider = 'VNP';
+
+        $webservice = "http://charging-service.megapay.net.vn/CardChargingGW_V2.0/services/Services?wsdl";
+        $soapClient = new SoapClient(null, array('location' => $webservice, 'uri' => "http://113.161.78.134/VNPTEPAY/"));
+
+        $CardCharging = new CardCharging();
+        $CardCharging->m_UserName = 'kh00015';
+        $CardCharging->m_PartnerID = 'kh0015';
+        $CardCharging->m_MPIN = 'zykqfrlwz';
+        $CardCharging->m_Target = 'useraccount1';
+        $CardCharging->m_Card_DATA = $serial . ":" . $pin . ":" . "0" . ":" . $serviceProvider;
+        $CardCharging->m_SessionID = "";
+        $CardCharging->m_Pass = 'fzdvoalqz';
+        $CardCharging->soapClient = $soapClient;
+        $transid = '00368' . date("YmdHms"); //gen transaction id
+        $CardCharging->m_TransID = $transid;
+
+        $CardChargingResponse = new CardChargingResponse();
+        $CardChargingResponse = $CardCharging->CardCharging_();
+        
+        var_dump($CardChargingResponse).'<br>';
+        //echo $CardChargingResponse->m_RESPONSEAMOUNT.'<br>';
+        //echo $CardChargingResponse->m_TRANSID.'<br>';
+        
         $this->session->set_flashdata('success',$dataResult);
         echo json_encode($dataResult);
     }
