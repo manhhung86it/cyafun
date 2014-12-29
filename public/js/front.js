@@ -1,4 +1,71 @@
 $(document).ready(function() {
+//    js cho phan nap the cyafun
+    $("#tabs-form-payment form:not(:first)").hide();
+    $("#tab-menu div input:not(:first)").prop('checked', false);
+    $("#tab-menu div input:first").prop('checked', true);
+    $("#tab-menu div input").click(function() {
+        var active = $(this).val();
+        $("#tab-menu div input").prop('checked', false);
+        $(this).prop('checked', true);
+        $("#tabs-form-payment form").hide();
+        $(active).fadeIn();
+    });
+    $("#mobile").submit(function() {
+        var data = $(this).serialize();
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: base_url + '/response/mobile', //Relative or absolute path to response.php file
+            data: data,
+            success: function(data) {
+                if (data.message == 'Success') {
+                    if (data.data.nextstep == 3) {
+                        var url = base_url + '/payment/mobilePayment';
+                        $(location).attr('href', url);
+                    }
+                }
+            }
+        });
+        return false;
+    });
+    $("#pm").submit(function() {
+        var data = $(this).serialize();
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: base_url + '/response/pm', //Relative or absolute path to response.php file
+            data: data,
+            success: function(data) {
+                if (data.message == 'Success') {
+                    if (data.data.nextstep == 2) {
+                        var url = base_url + '/payment/pmPayment';
+                        $(location).attr('href', url);
+                    }
+                }
+            }
+        });
+        return false;
+    });
+    $("#other").submit(function() {
+        var data = $(this).serialize();
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: base_url + '/response/other', //Relative or absolute path to response.php file
+            data: data,
+            success: function(data) {
+                if (data.message == 'Success') {
+                    if (data.data.nextstep == 2) {
+                        var url = base_url + '/payment/otherPayment';
+                        $(location).attr('href', url);
+                    }
+                }
+            }
+        });
+        return false;
+    });
+
+    //    end js cho phan nap the cyafun
     $("input[type='password']").attr("autocomplete", "off");
 
     $('#list-product-order-create_wrapper').on('change', 'input[name=order_prd_id]', function() {
@@ -751,8 +818,8 @@ var tmp = '';
 tmp += '<div class="banner-button table-header save-order-not-hidden"><a class="btn btn-link" href="' + base_url + '/order/saveOrders' + '">LIST SAVED ORDER</a></div>';
 $("#list-orders_wrapper #list-orders_info").parents('.col-xs-6').html(tmp);
 var tmp_2 = '';
-tmp_2 +=$("#list-orders_wrapper #list-orders_filter").parents('.col-xs-6').html();
-tmp_2 +='<div class="banner-button table-header save-order-hidden"><a class="btn btn-link" href="' + base_url + '/order/saveOrders' + '">LIST SAVED ORDER</a></div>';
+tmp_2 += $("#list-orders_wrapper #list-orders_filter").parents('.col-xs-6').html();
+tmp_2 += '<div class="banner-button table-header save-order-hidden"><a class="btn btn-link" href="' + base_url + '/order/saveOrders' + '">LIST SAVED ORDER</a></div>';
 $("#list-orders_wrapper #list-orders_filter").parents('.col-xs-6').html(tmp_2);
 /**
  * render_status_orders
@@ -809,7 +876,7 @@ var tmp = '';
 tmp += '<div class="more-order btn-back-save-order"><a class="btn btn-link" style="cursor: pointer; font-size: 18px;" onclick="history.back(1);">Back</a></div>';
 $("#list-save-orders_wrapper #list-save-orders_info").parents('.col-xs-6').html(tmp);
 var tmp_2 = '';
-tmp_2 +='<div class="col-xs-6"><div class="more-order btn-back-save-order-hidden"><a class="btn btn-link" style="cursor: pointer; font-size: 18px;" onclick="history.back(1);">Back</a></div></div>';
+tmp_2 += '<div class="col-xs-6"><div class="more-order btn-back-save-order-hidden"><a class="btn btn-link" style="cursor: pointer; font-size: 18px;" onclick="history.back(1);">Back</a></div></div>';
 $("#list-save-orders_wrapper .dataTables_paginate").parents('.col-xs-6').append(tmp_2);
 /**
  * render_status_save_orders
@@ -1235,7 +1302,7 @@ $('input[name=product_type]').change(function() {
  * render_orderproduct_image
  */
 function render_orderproduct_image(data, type, full) {
-    if(data == null)
+    if (data == null)
         return '<img src="' + public_url + 'upload/default_product.png" with=100 height=100/>';
     else
         return '<img src="' + public_url + 'upload/' + data + '" with=100 height=100/>';
