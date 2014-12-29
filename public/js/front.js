@@ -20,8 +20,8 @@ $(document).ready(function() {
             success: function(data) {
                 if (data.message == 'Success') {
                     if (data.data.nextstep == 3) {
-                        var url = base_url + '/payment/mobilePayment';
-                        $(location).attr('href', url);
+                        //var url = base_url + '/payment/mobilePayment';
+                        //$(location).attr('href', url);
                     }
                 }
             }
