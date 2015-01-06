@@ -152,9 +152,9 @@ class Manager extends MY_Controller {
 
         $this->load->model('user_model', 'user');
 
-        $dataWhere = '(parent_id = ' . $this->auth['id'] . ')';
+        $dataWhere = null;
         if (!empty($search)) {
-            $dataWhere .= " AND (firstname  like '%{$search}%' or lastname  like '%{$search}%' or email  like '%{$search}%' or phone  like '%{$search}%')";
+            $dataWhere = "(us_username  like '%{$search}%' or us_name_display  like '%{$search}%' or us_email  like '%{$search}%')";
         }
 
         $users = $this->user->listUsers($dataWhere, array(), '*', $recordPerPage, $start, $order, $sort);
@@ -166,19 +166,19 @@ class Manager extends MY_Controller {
         $jsonArray['aaData'] = array();
         foreach ($users as $user) {
             $data = array(
-                'id' => $user['id'],
-                'firstname' => $user['firstname'],
-                'lastname' => $user['lastname'],
-                'email' => $user['email'],
-                'phone' => $user['phone'],
-                'date_added' => $user['date_added'],
-                'date_modified' => $user['date_modified'],
-                'active' => $user['active'],
-                'redirect_submit_order' => $user['redirect_submit_order'],
+                'us_id' => $user['us_id'],
+                'us_username' => $user['us_username'],
+                'us_name_display' => $user['us_name_display'],
+                'us_fullname' => $user['us_fullname'],
+                'us_email' => $user['us_email'],
+                'us_balance' => $user['us_balance'],
+                'us_avatar' => $user['us_avatar'],
+                'us_password' => $user['us_password'],
+                'us_date_created' => $user['us_date_created'],
+                'us_status' => $user['us_status'],
                 'action' => 1);
             $jsonArray['aaData'][] = $data;
         }
-
         echo json_encode($jsonArray);
     }
 
@@ -189,39 +189,50 @@ class Manager extends MY_Controller {
         $dataUser = array();
         if ($id != 0) {
             $datauser = array(
-                'id' => $id,
-                'parent_id' => $this->auth['id'],
+                'us_id' => $id,
             );
             $user = $this->user->getUser($datauser);
             if (empty($user))
                 redirect('manager/update_user');
             $dataUser = array(
-                'firstname' => $user['firstname'],
-                'lastname' => $user['lastname'],
-                'email' => $user['email'],
-                'phone' => $user['phone'],
-                'active' => $user['active'],
-                'redirect_submit_order' => $user['redirect_submit_order']
+                'us_username' => $user['us_username'],
+                'us_name_display' => $user['us_name_display'],
+                'us_fullname' => $user['us_fullname'],
+                'us_email' => $user['us_email'],
+                'us_balance' => $user['us_balance'],
+                'us_avatar' => $user['us_avatar'],
+                'us_password' => $user['us_password'],
+                'us_date_created' => $user['us_date_created'],
+                'us_status' => $user['us_status']
             );
         }
         $posts = $this->input->post();
+        $dir = PUBLICPATH . '/upload/';
         if ($posts) {
             $dataUser = $posts;
-            $dataUser['active'] = !empty($posts['active']) ? 1 : 0;
-            $dataUser['redirect_submit_order'] = !empty($posts['redirect_submit_order']) ? 1 : 0;
-            $validate = $this->user_manager->userCreateValidate($dataUser, $id);
+            $dataUser['us_status'] = !empty($posts['us_status']) ? 1 : 0;
+            $file = $_FILES['us_avatar'];
+            if (!empty($file))
+                $tmp_name = $file["tmp_name"];
+            $validate = $this->user_manager->userCreateValidate($dataUser, $id, $file);
             if (empty($validate)) {
                 if (!empty($id)) {
                     $dataUserUpdate = array(
-                        'firstname' => $dataUser['firstname'],
-                        'lastname' => $dataUser['lastname'],
-                        'email' => $dataUser['email'],
-                        'phone' => $dataUser['phone'],
-                        'active' => $dataUser['active'],
-                        'redirect_submit_order' => $dataUser['redirect_submit_order'],
+                        'us_username' => $dataUser['us_username'],
+                        'us_name_display' => $dataUser['us_name_display'],
+                        'us_fullname' => $dataUser['us_fullname'],
+                        'us_email' => $dataUser['us_email'],
+                        'us_balance' => $dataUser['us_balance'],
                     );
-                    if (!empty($dataUser['password'])) {
-                        $dataUserUpdate['password'] = md5($dataUser['password']);
+                    $dataUserUpdate['us_status'] = $dataUser['us_status'];
+                    if (!empty($file)) {
+                        $name = $this->auth['us_id'] . $file["name"];
+                        if (move_uploaded_file($tmp_name, "$dir/$name")) {
+                            $dataUserUpdate['us_avatar'] = $name;
+                        }
+                    }
+                    if (!empty($dataUser['us_password'])) {
+                        $dataUserUpdate['us_password'] = md5($dataUser['us_password']);
                     }
                     $this->data['type_page'] = 1;
                     $this->user->update($dataUserUpdate, $id);
@@ -229,15 +240,21 @@ class Manager extends MY_Controller {
                     redirect('manager/users');
                 } else {
                     $dataUserInsert = array(
-                        'firstname' => $dataUser['firstname'],
-                        'lastname' => $dataUser['lastname'],
-                        'email' => $dataUser['email'],
-                        'phone' => $dataUser['phone'],
-                        'active' => $dataUser['active'],
-                        'password' => md5($dataUser['password']),
-                        'parent_id' => $this->auth['id'],
-                        'redirect_submit_order' => $dataUser['redirect_submit_order'],
+                        'us_username' => $dataUser['us_username'],
+                        'us_name_display' => $dataUser['us_name_display'],
+                        'us_fullname' => $dataUser['us_fullname'],
+                        'us_email' => $dataUser['us_email'],
+                        'us_balance' => $dataUser['us_balance'],
+                        'us_status' => $dataUser['us_status'],
+                        'us_password' => md5($dataUser['us_password']),
                     );
+                    $dataUserInsert['us_status'] = $dataUser['us_status'];
+                    if (!empty($file)) {
+                        $name = $this->auth['us_id'] . $file["name"];
+                        if (move_uploaded_file($tmp_name, "$dir/$name")) {
+                            $dataUserInsert['us_avatar'] = $name;
+                        }
+                    }
                     $this->data['type_page'] = 2;
                     $this->user->insert($dataUserInsert);
                     $this->session->set_flashdata('success', 'Insert user success');
@@ -254,11 +271,10 @@ class Manager extends MY_Controller {
 
     public function delete_user() {
         $this->load->model('user_model', 'user');
-        $id = $this->input->post('id');
+        $id = $this->input->post('us_id');
         if (!empty($id)) {
             $dataDelete = array(
-                'id' => $id,
-                'parent_id' => $this->auth['id']
+                'us_id' => $id
             );
             $this->user->delete($dataDelete);
         }

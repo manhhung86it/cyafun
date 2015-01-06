@@ -20,25 +20,18 @@ class Response extends MY_Controller {
     }
 
     public function mobile() {
-        $dataResult['success'] = 12;
-        $dataResult['message'] = 'Success';
-        $dataResult['data'] = array(
-            'nextstep' => 3,
-            'coin_amount' => 1000,
-            'paid' => '100000',
-            'paid_curency' => 'VND',
-            'rate' => '0.5'
-        );
-        
-        $pin = '123456789';
+        $number = $this->input->post('number');
+        $serial = $this->input->post('serial');
+        $supplier = $this->input->post('supplier');
+        $pin = $number;
         $pin = str_replace('-', '', $pin);
         $pin = str_replace(' ', '', $pin);
-        $serial = '12345678912';
+        $serial = $serial;
         $serial = str_replace('-', '', $serial);
         $serial = str_replace(' ', '', $serial);
-        $serviceProvider = 'VNP';
+        $serviceProvider = $supplier;
 
-        $webservice = "http://charging-service.megapay.net.vn/CardChargingGW_V2.0/services/Services?wsdl";
+        $webservice = "http://charging-test.megapay.net.vn:10001/CardChargingGW_V2.0/services/Services?wsdl";
         $soapClient = new SoapClient(null, array('location' => $webservice, 'uri' => "http://113.161.78.134/VNPTEPAY/"));
 
         $CardCharging = new CardCharging();
@@ -55,29 +48,29 @@ class Response extends MY_Controller {
 
         $CardChargingResponse = new CardChargingResponse();
         $CardChargingResponse = $CardCharging->CardCharging_();
-        
-        var_dump($CardChargingResponse).'<br>';
+
+//        var_dump($CardChargingResponse) . '<br>';
         //echo $CardChargingResponse->m_RESPONSEAMOUNT.'<br>';
         //echo $CardChargingResponse->m_TRANSID.'<br>';
-        
-        $this->session->set_flashdata('success',$dataResult);
-        echo json_encode($dataResult);
+
+        $this->session->set_flashdata('success', $CardChargingResponse);
+        echo json_encode($CardChargingResponse);
     }
+
     public function pm() {
+        $number = $this->input->post('number');
         $dataResult['success'] = 1;
         $dataResult['message'] = 'Success';
         $dataResult['data'] = array(
             'nextstep' => 2,
-            'coin_amount' => 1000,
-            'paid' => '100000',
-            'paid_curency' => 'VND',
-            'rate' => '0.5',
-        );  
+            'coin_amount' => $number,
+        );
         $dataResult['link_submit'] = 'cya';
-        $this->session->set_flashdata('success',$dataResult);
+        $this->session->set_flashdata('success', $dataResult);
         //luu session phai co them link_submit
         echo json_encode($dataResult);
     }
+
     public function other() {
         $dataResult['success'] = 1;
         echo json_encode($dataResult);

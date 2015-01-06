@@ -210,44 +210,45 @@ class User_manager {
         return $error;
     }
 
-    public function userCreateValidate($user, $id = null) {
+    public function userCreateValidate($user, $id = null, $file) {
         $this->CI->load->model('user_model', 'user');
         $error = array();
-        if (empty($user['firstname'])) {
-            $error['firstname'] = 'Please enter your first name';
-        }
-        if (empty($user['firstname'])) {
-            $error['lastname'] = 'Please enter your first name';
-        }
-
-        if (empty($user['email']) || !valid_email($user['email'])) {
-            $error['email'] = 'Email invalid';
+        if (!empty($file['tmp_name']))
+            if (!getimagesize($file['tmp_name'])) {
+                $error['us_avatar'] = 'Please upload image type';
+            }
+        if (empty($user['us_username'])) {
+            $error['us_username'] = 'Please enter user name';
         }
 
-        $emailExistsWhere['email'] = $user['email'];
+        if (empty($user['us_fullname'])) {
+            $error['us_fullname'] = 'Please enter full name';
+        }
+        if (empty($user['us_name_display'])) {
+            $error['us_name_display'] = 'Please enter name display';
+        }
+
+        if (empty($user['us_email']) || !valid_email($user['us_email'])) {
+            $error['us_email'] = 'Email invalid';
+        }
+
+        $emailExistsWhere['us_email'] = $user['us_email'];
         if (!empty($id)) {
-            $emailExistsWhere['id !='] = $id;
+            $emailExistsWhere['us_id !='] = $id;
         }
 
         $checkEmailExists = $this->CI->user->getUser($emailExistsWhere);
         if (!empty($checkEmailExists))
-            $error['email'] = 'Email already exists';
+            $error['us_email'] = 'Email already exists';
 
-        if (!empty($user['phone']) && !is_numeric($user['phone'])) {
-            $error['phone'] = 'Please enter valid phone number';
-        }
-
-        if ($user['password'] != $user['cf_password']) {
-            $error['cf_password'] = 'Passwords do not match. Please re-enter your password';
-        }
-        $containsLetter = preg_match('/[a-zA-Z]/', $user['password']);
-        $containsDigit = preg_match('/\d/', $user['password']);
-        if (empty($id) || (!empty($id) && strlen($user['password']) > 0)) {
-            if (empty($user['password']) || strlen($user['password']) < 7) {
-                $error['password'] = 'Minimum of 7 characters.  At least one must be numeric and at least one must be alpha';
+        $containsLetter = preg_match('/[a-zA-Z]/', $user['us_password']);
+        $containsDigit = preg_match('/\d/', $user['us_password']);
+        if (empty($id) || (!empty($id) && strlen($user['us_password']) > 0)) {
+            if (empty($user['us_password']) || strlen($user['us_password']) < 7) {
+                $error['us_password'] = 'Minimum of 7 characters.  At least one must be numeric and at least one must be alpha';
             }
             if (!$containsLetter || !$containsDigit) {
-                $error['password'] = 'Minimum of 7 characters.  At least one must be numeric and at least one must be alpha';
+                $error['us_password'] = 'Minimum of 7 characters.  At least one must be numeric and at least one must be alpha';
             }
         }
 

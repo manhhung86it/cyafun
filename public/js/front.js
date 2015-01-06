@@ -11,6 +11,7 @@ $(document).ready(function() {
         $(active).fadeIn();
     });
     $("#mobile").submit(function() {
+        console.log("1");
         var data = $(this).serialize();
         $.ajax({
             type: "POST",
@@ -18,11 +19,13 @@ $(document).ready(function() {
             url: base_url + '/response/mobile', //Relative or absolute path to response.php file
             data: data,
             success: function(data) {
-                if (data.message == 'Success') {
-                    if (data.data.nextstep == 3) {
-                        //var url = base_url + '/payment/mobilePayment';
-                        //$(location).attr('href', url);
-                    }
+                if (data.m_Status == 1) {
+                    var url = base_url + '/payment/mobilePayment';
+                    $(location).attr('href', url);
+//                    if (data.data.nextstep == 3) {
+                    //var url = base_url + '/payment/mobilePayment';
+                    //$(location).attr('href', url);
+//                    }
                 }
             }
         });
@@ -416,46 +419,40 @@ $().ready(function() {
 
     $("#form-user-update").validate({
         rules: {
-            firstname: {
+            us_username: {
                 required: true,
             },
-            lastname: {
+            us_name_display: {
                 required: true,
             },
-            email: {
+            us_fullname: {
+                required: true,
+            },
+            us_email: {
                 required: true,
                 email: true,
                 maxlength: 78,
-            },
-            phone: {
-                digits: true,
-            },
-            cf_password: {
-                equalTo: "#password"
             }
 
         },
         messages: {
-            firstname: {
+            us_username: {
                 required: 'Please enter your first name',
             },
-            lastname: {
+            us_name_display: {
                 required: 'Please enter your last name',
             },
-            email: {
+            us_fullname: {
+                required: 'Please enter your last name',
+            },
+            us_email: {
                 required: "Email invalid",
                 email: "Email invalid",
                 maxlength: "Email invalid",
             },
-            phone: {
-                digits: 'Please enter valid phone number',
-            },
             postcode: {
                 required: 'Please enter your postcode',
                 digits: 'Postcode invalid',
-            },
-            cf_password: {
-                equalTo: "Passwords do not match. Please re-enter your password"
             }
         },
         errorPlacement: function(error, element) {
@@ -772,18 +769,19 @@ function delete_supplier(id) {
         });
     }
 }
-
+// phan quan ly user trong cyafun
 var users_manager = $('#users_manager').dataTable({
     "bLengthChange": "table-header",
     "bProcessing": true,
     "bServerSide": true,
     "sAjaxSource": base_url + '/manager/ajax_list_user',
     "aoColumns": [
-        {"sTitle": "Id", "iDataSort": "id", "mData": "id", "bSearchable": false},
-        {"sTitle": "Firstname", "iDataSort": "firstname", "mData": "firstname"},
-        {"sTitle": "Lastname", "iDataSort": "lastname", "mData": "lastname"},
-        {"sTitle": "Email", "iDataSort": "email", "mData": "email"},
-        {"sTitle": "Phone", "iDataSort": "phone", "mData": "phone"},
+        {"sTitle": "Id", "iDataSort": "us_id", "mData": "us_id", "bSearchable": false},
+        {"sTitle": "Name", "iDataSort": "us_username", "mData": "us_username"},
+        {"sTitle": "Name display", "iDataSort": "us_name_display", "mData": "us_name_display"},
+        {"sTitle": "Email", "iDataSort": "us_email", "mData": "us_email"},
+        {"sTitle": "Balance", "iDataSort": "us_balance", "mData": "us_balance"},
+        {"sTitle": "Status", "iDataSort": "us_status", "mData": "us_status"},
         {"sTitle": "", "bSortable": false, "mData": "action", "bSearchable": false, "mRender": render_action_user},
     ],
 });
@@ -794,8 +792,8 @@ $("#users_manager_wrapper #users_manager_length").html('<div class="banner-butto
  */
 function render_action_user(data, type, full) {
     var html = '<div class="hidden-sm hidden-xs action-buttons">';
-    html += '<a href="javascript:delete_user(' + full.id + ')" class="red"><i class="a fa fa-trash-o bigger-130"></i></a>';
-    html += '<a href="' + base_url + '/manager/update_user/' + full.id + '" class="red"><i class="fa fa-edit bigger-130"></i></a>';
+    html += '<a href="javascript:delete_user(' + full.us_id + ')" class="red"><i class="a fa fa-trash-o bigger-130"></i></a>';
+    html += '<a href="' + base_url + '/manager/update_user/' + full.us_id + '" class="red"><i class="fa fa-edit bigger-130"></i></a>';
     html += '</div>';
     return html;
 }
@@ -904,7 +902,7 @@ function delete_user(id) {
         $.ajax({
             url: base_url + '/manager/delete_user',
             type: 'POST',
-            data: {'id': id},
+            data: {'us_id': id},
             success: function(data) {
                 users_manager.fnDraw(false);
             }

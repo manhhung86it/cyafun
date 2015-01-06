@@ -2,7 +2,7 @@
     <!-- Start service -->
     <div class="container">
         <div class="row">
-            <form role="form" method="post" action="" id="form-user-update" class="span8">
+            <form role="form" method="post" action="" id="form-user-update" class="span8" enctype="multipart/form-data">
                 <div class="col-xs-12">
                     <div class="table-update center-block span6">
                         <div class="logo-register"><img src="<?php echo base_url(); ?>public/img/login-logo.png" alt="" title="" >
@@ -14,92 +14,118 @@
                             <?php } ?>
                         </div>
                         <div class="form-group input-update">
-                            <label for="firstname">Firstname:</label>
+                            <label for="name">Name:</label>
                             <div class="input-group">
-                                <i class="fa fa-user"></i><input type="text" value="<?php echo!empty($user['firstname']) ? $user['firstname'] : '' ?>" class="form-control input-lg" name="firstname" id="firstname">
+                                <i class="fa fa-user"></i><input type="text" value="<?php echo!empty($user['us_username']) ? $user['us_username'] : '' ?>" class="form-control input-lg" name="us_username" id="us_username">
                             </div>
-                            <?php if (!empty($data_error['firstname'])): ?>
-                                <label for="firstname" class="error"><?php echo $data_error['firstname'] ?></label>
+                            <?php if (!empty($data_error['us_username'])): ?>
+                                <label for="us_username" class="error"><?php echo $data_error['us_username'] ?></label>
                             <?php endif; ?>
-                            <div id="firstname_validate">
-                            </div>
-                        </div>
-                        <div class="form-group input-update">
-                            <label for="lastname">Lastname:</label>
-                            <div class="input-group">
-                                <i class="fa fa-user"></i><input type="text" value="<?php echo!empty($user['lastname']) ? $user['lastname'] : '' ?>" class="form-control input-lg" name="lastname" id="lastname">
-
-                            </div>
-                            <?php if (!empty($data_error['lastname'])): ?>
-                                <label for="lastname" class="error"><?php echo $data_error['lastname'] ?></label>
-                            <?php endif; ?>
-                            <div id="lastname_validate">
+                            <div id="us_username_validate">
                             </div>
                         </div>
 
                         <div class="form-group input-update">
-                            <label for="fax">Email:</label>
+                            <label for="us_avatar">Avatar:</label>
                             <div class="input-group">
-                                <i class="fa fa-envelope-square"></i><input type="text" value="<?php echo!empty($user['email']) ? $user['email'] : '' ?>" class="form-control input-lg" name="email" id="email">
+                                <i class="fa fa-envelope-square"></i><input type="file" value="" class="form-control input-lg" name="us_avatar" id="us_avatar">
                             </div>
-                            <?php if (!empty($data_error['email'])): ?>
-                                <label for="email" class="error"><?php echo $data_error['email'] ?></label>
+                            <?php if (!empty($user['us_avatar'])): ?>
+                                <img src="<?php echo base_url() . 'public/upload/' . $user['us_avatar'] ?>" width="200" height="200">
+                            <?php else: ?>
+                                <img src="<?php echo base_url() . 'public/img/login-logo.png' ?>" width="200" height="200">
                             <?php endif; ?>
-                            <div id="email_validate">
+                            <?php if (!empty($data_error['us_avatar'])): ?>
+                                <label for="us_avatar" class="error"><?php echo $data_error['us_avatar'] ?></label>
+                            <?php endif; ?>
+                            <div id="us_avatar_validate">
 
                             </div>
                         </div>
+
                         <div class="form-group input-update">
-                            <label for="password">Password:</label>
+                            <label for="us_name_display">Name Display:</label>
                             <div class="input-group">
-                                <i class="fa fa-lock"></i><input type="password" value="" class="form-control input-lg" name="password" id="password">
+                                <i class="fa fa-user"></i><input type="text" value="<?php echo!empty($user['us_name_display']) ? $user['us_name_display'] : '' ?>" class="form-control input-lg" name="us_name_display" id="us_name_display">
 
                             </div>
-                            <?php if (!empty($data_error['password'])): ?>
-                                <label for="password" class="error"><?php echo $data_error['password'] ?></label>
+                            <?php if (!empty($data_error['us_name_display'])): ?>
+                                <label for="us_name_display" class="error"><?php echo $data_error['us_name_display'] ?></label>
                             <?php endif; ?>
-                            <div id="password_validate">
-
+                            <div id="us_name_display_validate">
                             </div>
                         </div>
+
                         <div class="form-group input-update">
-                            <label for="cf_password">Comfirm password:</label>
+                            <label for="us_fullname">Full Name:</label>
                             <div class="input-group">
-                                <i class="fa fa-lock"></i><input type="password" value="" class="form-control input-lg" name="cf_password" id="cf_password">
+                                <i class="fa fa-user"></i><input type="text" value="<?php echo!empty($user['us_fullname']) ? $user['us_fullname'] : '' ?>" class="form-control input-lg" name="us_fullname" id="us_fullname">
 
                             </div>
-                            <?php if (!empty($data_error['cf_password'])): ?>
-                                <label for="cf_password" class="error"><?php echo $data_error['cf_password'] ?></label>
+                            <?php if (!empty($data_error['us_fullname'])): ?>
+                                <label for="us_fullname" class="error"><?php echo $data_error['us_fullname'] ?></label>
                             <?php endif; ?>
-                            <div id="cf_password_validate">
-
+                            <div id="us_fullname_validate">
                             </div>
                         </div>
+
                         <div class="form-group input-update">
-                            <label for="phone">Phone:</label>
-                            <div class="input-group">   
-                                <i class="fa fa-mobile"></i><input type="text" value="<?php echo!empty($user['phone']) ? $user['phone'] : '' ?>" class="form-control input-lg" name="phone" id="phone">
-
+                            <label for="us_email">Email:</label>
+                            <div class="input-group">
+                                <i class="fa fa-envelope-square"></i><input type="text" value="<?php echo!empty($user['us_email']) ? $user['us_email'] : '' ?>" class="form-control input-lg" name="us_email" id="us_email">
                             </div>
-                            <?php if (!empty($data_error['phone'])): ?>
-                                <label for="phone" class="error"><?php echo $data_error['phone'] ?></label>
+                            <?php if (!empty($data_error['us_email'])): ?>
+                                <label for="us_email" class="error"><?php echo $data_error['us_email'] ?></label>
                             <?php endif; ?>
-                            <div id="phone_validate">
+                            <div id="us_email_validate">
 
                             </div>
                         </div>
+
+                        <div class="form-group input-update">
+                            <label for="us_balance">Balance:</label>
+                            <div class="input-group">
+                                <i class="fa fa-envelope-square"></i><input type="text" value="<?php echo!empty($user['us_balance']) ? $user['us_balance'] : '' ?>" class="form-control input-lg" name="us_balance" id="us_balance">
+                            </div>
+                            <?php if (!empty($data_error['us_balance'])): ?>
+                                <label for="us_balance" class="error"><?php echo $data_error['us_balance'] ?></label>
+                            <?php endif; ?>
+                            <div id="us_balance_validate">
+
+                            </div>
+                        </div>
+
+                        <div class="form-group input-update">
+                            <label for="us_password">Password:</label>
+                            <div class="input-group">
+                                <i class="fa fa-lock"></i><input type="text" value="" class="form-control input-lg" name="us_password" id="us_password">
+
+                            </div>
+                            <?php if (!empty($data_error['us_password'])): ?>
+                                <label for="us_password" class="error"><?php echo $data_error['us_password'] ?></label>
+                            <?php endif; ?>
+                            <div id="us_password_validate">
+
+                            </div>
+                        </div>
+
+                        <?php if ($id != 0) { ?>
+                            <div class="form-group input-update">
+                                <label for="us_date_created">Date Created:</label>
+                                <div class="input-group" disabled >   
+                                    <i class="fa fa-mobile"></i><input type="text" value="<?php echo!empty($user['us_date_created']) ? $user['us_date_created'] : '' ?>" class="form-control input-lg" name="phone" id="phone">
+
+                                </div>
+                            </div>
+                        <?php } ?>
+
                         <div class="form-group input-radio-update">
-                            <label for="active" style="width: 22%;">Active :</label>
+                            <label for="us_status" style="width: 22%;">Active :</label>
                             <div class="input-group">
-                                <input type="checkbox" value="1" <?php echo (!isset($user['active']) || $user['active'] == 1) ? 'checked' : '' ?> class="form-control input-lg" name="active" id="active">
+                                <input type="checkbox" value="1" <?php echo (!isset($user['us_status']) || $user['us_status'] == 1) ? 'checked' : '' ?> class="form-control input-lg" name="us_status" id="us_status">
                             </div>
                         </div>
-                        <div class="form-group input-radio-update">
-                            <label for="active">Redirect submit order :</label>
-                            <div class="input-group">
-                                <input type="checkbox" value="1" <?php echo (isset($user['redirect_submit_order']) && $user['redirect_submit_order'] == 1) ? 'checked' : '' ?> class="form-control input-lg" name="redirect_submit_order" id="redirect_submit_order">
-                            </div>
-                        </div>
+
                         <?php if ($id == 0) { ?>
                             <div class="register-submit">
                                 <input type="submit"  id="update_supplier" value="ADD" class="btn center-block">

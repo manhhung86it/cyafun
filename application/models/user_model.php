@@ -45,7 +45,7 @@ class User_model extends CI_Model {
     }
 
     function insert($data) {
-        $this->db->set('date_added', 'NOW()', FALSE);
+        $this->db->set('us_date_created', 'NOW()', FALSE);
         $this->db->insert('users', $data);
         return $this->db->insert_id();
     }
@@ -64,7 +64,7 @@ class User_model extends CI_Model {
         $this->db->delete('users', $data);
     }
 
-    function listUsers($data = array(), $dataIn = array(), $fields = '*', $limit = null, $offset = null, $order = 'id', $sort = 'DESC') {
+    function listUsers($data = array(), $dataIn = array(), $fields = '*', $limit = null, $offset = null, $order = 'us_id', $sort = 'DESC') {
         $this->db->select($fields);
         $this->db->from('users');
         if (!empty($data)) {
@@ -92,7 +92,7 @@ class User_model extends CI_Model {
     }
 
     function totalUsers($data = array(), $dataIn = array()) {
-        $this->db->select('count(id) as total');
+        $this->db->select('count(us_id) as total');
         $this->db->from('users');
         if (!empty($data)) {
             $this->db->where($data);

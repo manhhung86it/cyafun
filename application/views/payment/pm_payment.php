@@ -2,60 +2,54 @@
     <!-- Start service -->
     <div class="container">
         <div class="row" id="tabs-form-payment">
-            <form role="form" method="post" action="<?php echo $link_submit; ?>" id="pm_payment_step2" class="span8" enctype="multipart/form-data">
-                <div class="col-xs-12">
-                    <div class="table-update center-block span6">                        
-                        <div class="form-group input-update">
-                            <label for="number">Ma the: * </label>
-                            <div class="input-group">
-                                <i class="fa fa-database"></i> <input type="text" value="<?php echo!empty($data['coin_amount']) ? $data['coin_amount'] : '' ?>" class="form-control input-lg" name="number" id="number">
-                            </div>
+            <?php
+            $pm_url = 'https://perfectmoney.is/api/step1.asp';
+//            $pm_account = $options['pm_account'];
+//            $pm_name = $options['pm_name'];
+            $pm_account = '192.168.0.1';
+            $pm_name = 'cya_soft';
+            $pm_currency = 'VND';
+            $pm_return_url = base_url() . 'index.php/payment/success';
+            $pm_cancel_url = base_url() . 'index.php/payment/createPayment';
+            $pm_status_url = base_url() . 'index.php/cyagame_pm_ipn.php';
+            ?>
 
-                            <?php if (!empty($data_error['number'])): ?>
-                                <label for="number" class="error"><?php echo $data_error['number'] ?></label>
-                            <?php endif; ?>
-                            <div id="number_validate">
-                            </div>
-                        </div>
-                        <div class="form-group input-update">
-                            <label for="serial">Serial: </label>
-                            <div class="input-group">
-                                <i class="fa fa-database"></i> <input type="text" value="" class="form-control input-lg" name="serial" id="serial">
-                            </div>
+            <form method="post" action="<?php echo $pm_url; ?>">
+                <input type="hidden" name="PAYEE_ACCOUNT" value="<?php echo $pm_account; ?>">
+                <input type="hidden" name="PAYEE_NAME" value="<?php echo $pm_name; ?>">
+                <input type="hidden" name="PAYMENT_AMOUNT" value="<?php echo $data['coin_amount']; ?>">
+                <input type="hidden" name="PAYMENT_UNITS" value="<?php echo $pm_currency; ?>">
+                <input type="hidden" name="STATUS_URL" value="<?php echo $pm_status_url; ?>">
+                <input type="hidden" name="PAYMENT_URL" value="<?php echo $pm_return_url; ?>">
+                <input type="hidden" name="NOPAYMENT_URL" value="<?php echo $pm_cancel_url; ?>">                    <input type="hidden" name="BAGGAGE_FIELDS" value="cyagame_user_id cyagame_coin amount_text deposit_rate deposit_fee deposit_fee_text">
+                <input type="hidden" name="cyagame_user_id" value="<?php echo $us_id; ?>"/>    
 
-                            <?php if (!empty($data_error['serial'])): ?>
-                                <label for="serial" class="error"><?php echo $data_error['serial'] ?></label>
-                            <?php endif; ?>
-                            <div id="serial_validate">
-                            </div>
-                        </div>
-                        <div class="form-group input-update">
-                            <label for="supplier">Nha cung cap: </label>
-                            <div class="input-group">
-                                <i class="fa fa-database"></i> <select name="supplier" id="supplier">
-                                    <option>Vinaphone</option>
-                                    <option>Mobiphone</option>
-                                    <option>Viettel</option>
-                                    <option>FPT</option>
-                                    <option>VTC Vcoin</option>
-                                    <option>Mega Card</option>
-                                </select>
-                            </div>
 
-                            <?php if (!empty($data_error['supplier'])): ?>
-                                <label for="supplier" class="error"><?php echo $data_error['supplier'] ?></label>
-                            <?php endif; ?>
-                            <div id="supplier_validate">
-                            </div>
-                        </div>
-                        <div class="register-submit">
-                            <input class="update" type="submit" name="submit"  id="submit_payment" value="Nạp thẻ" class="btn btn-info">
-                        </div>
-                        <div class="more-order">
-                            <a style="cursor: pointer;" onclick="history.back(1);">Cancel</a>
-                        </div>
-                    </div>
-                </div>
+                <table width="50%" align="center" border="0">
+                    <tr>
+                        <td width="50%">Amount</td>
+                        <td><?php echo $data['coin_amount']; ?></td>
+                    </tr>
+                    <tr>
+                        <td width="50%">Fee</td>
+                        <td>$4</td>
+                    </tr>
+                    <tr>
+                        <td width="50%">You have to pay:</td>
+                        <td>$100</td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2" align="center">
+                            <input type="submit" value="Confirm"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center">
+                            <a href="<?php echo $pm_cancel_url; ?>">Cancel</a>
+                        </td>
+                    </tr>
+                </table>
             </form>
         </div>
 

@@ -38,12 +38,12 @@
                             <label for="supplier">Nha cung cap: </label>
                             <div class="input-group">
                                 <i class="fa fa-database"></i> <select name="supplier" id="supplier">
-                                    <option>Vinaphone</option>
-                                    <option>Mobiphone</option>
-                                    <option>Viettel</option>
-                                    <option>FPT</option>
-                                    <option>VTC Vcoin</option>
-                                    <option>Mega Card</option>
+                                    <option value="VNP">Vinaphone</option>
+                                    <option value="VMS">Mobiphone</option>
+                                    <option value="VTT">Viettel</option>
+                                    <option value="FPT">FPT</option>
+                                    <option value="VTC">VTC Vcoin</option>
+                                    <option value="MGC">Mega Card</option>
                                 </select>
                             </div>
 
@@ -62,13 +62,13 @@
                     </div>
                 </div>
             </form>
-            
-            
+
+
             <form role="form" method="post" action="" id="pm" class="span8" enctype="multipart/form-data">
                 <div class="col-xs-12">
                     <div class="table-update center-block span6">                        
                         <div class="form-group input-update">
-                            <label for="number">number2 :</label>
+                            <label for="number">coin :</label>
                             <div class="input-group">
                                 <i class="fa fa-database"></i> <input type="text" value="" class="form-control input-lg" name="number" id="number">
                             </div>
@@ -88,8 +88,8 @@
                     </div>
                 </div>
             </form>
-            
-            
+
+
             <form role="form" method="post" action="" id="other" class="span8" enctype="multipart/form-data">
                 <div class="col-xs-12">
                     <div class="table-update center-block span6">                        

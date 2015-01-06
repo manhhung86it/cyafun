@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(0);
 Class login {
 
     Public $m_UserName;
@@ -33,7 +33,7 @@ Class login {
         $Obj->m_Status = $result->status;
 
         //Ham thuc hien lay private key cua doi tac tu file pem
-        $RSAClass->GetPrivatekeyFrompemFile("D:/xamp/htdocs/cyafun/application/controllers/nap_the/cyasoft_key/cyasoft_cyafun.pem");
+        $RSAClass->GetPrivatekeyFrompemFile("D:/xamp/htdocs/cyafun/application/controllers/nap_the/cyasoft_key/kh0015_mykey.pem");
         try {
             $Session_Decryped = $RSAClass->decrypt(base64_decode($result->sessionid));
             $Obj->m_SessionID = $this->Hextobyte($Session_Decryped);
@@ -190,15 +190,16 @@ Class CardCharging {
     var $SessionID;
     var $soapClient;
 
-    function CardCharging_() {   
+    function CardCharging_() {        
         if ($this->SessionID == null || $this->SessionID == "") {
             $login = new login();
             $login->m_UserName = $this->m_UserName;
             $login->m_Pass = $this->m_Pass;
             $login->m_PartnerID = $this->m_PartnerID;
             $login->soapClient = $this->soapClient;
+            //var_dump($login);
             $loginresponse = new loginResponse();
-            $loginresponse = $login->login_();            
+            $loginresponse = $login->login_();
             if ($loginresponse->m_Status == "1") {                
                 //print_r($loginresponse);						
                 //Nen luu lai bien SessionID de thuc hien cac ham charging tiep theo
@@ -245,7 +246,7 @@ Class CardCharging {
         $Obj->m_RESPONSEAMOUNT = $resAmount; //$result->responseamount;
         if ($Obj->m_Status == 3 || $Obj->m_Status == 7)
             $this->SessionID = null;
-        //print_r($Obj                    return  $Obj;
+//        print_r($Obj);
         return $Obj;
     }
 

@@ -16,14 +16,34 @@ class Payment extends MY_Controller {
         $this->load('front_layout', 'payment/payment');
     }
 
+    public function success() {
+        $this->load('front_layout','payment/mobile_payment');
+    }
+
     public function mobilePayment() {
-        $tmp = $this->session->flashdata('success'); 
-        var_dump($tmp);
+        $this->load->model('deposit_logs_model');
+        $tmp = $this->session->flashdata('success');
+        if (!empty($tmp)) {
+            $dataInsert = array();
+            $dataInsert = array(
+                'user_id' => $this->auth['us_id'],
+                'payment' => 'mobile',
+                'rate' => '0.5',
+                'amount' => $tmp->m_RESPONSEAMOUNT,
+                'coins' => $tmp->m_RESPONSEAMOUNT * 0.5,
+                'transaction_id' => $tmp->m_TRANSID,
+                'currency' => 'VND',
+            );
+            $this->deposit_logs_model->insert($dataInsert);
+        }
+        $this->data["tmp"] = $tmp;
+        $this->load('front_layout', 'payment/mobile_payment');
     }
 
     public function pmPayment() {
         $tmp = $this->session->flashdata('success');
         $this->data['data'] = $tmp['data'];
+        $this->data['us_id'] = $this->auth['us_id'];
         $this->data['link_submit'] = $tmp['link_submit'];
         $this->load('front_layout', 'payment/pm_payment');
     }

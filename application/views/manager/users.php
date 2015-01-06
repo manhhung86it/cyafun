@@ -16,10 +16,11 @@
                         <thead>
                             <tr>
                                 <th class=""></th>
-                                <th>Firstname</th>
-                                <th>Lastname</th>   
+                                <th>Name</th>
+                                <th>Name display</th>   
                                 <th>Email</th>
-                                <th>Phone</th>
+                                <th>Balance</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
