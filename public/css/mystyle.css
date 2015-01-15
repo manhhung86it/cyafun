@@ -286,21 +286,52 @@ a {color: #ce9702; text-decoration: none;}
     font-weight: bold;
     color: #c00c0c;
 }
+.slider-bottom{
+    background-color: #040404;
+}
+.slider-bottom section .flexslider{
+    margin: 0 0 30px;
+    border: 4px solid #040404;
+}
+.slider-bottom section .flexslider .flex-direction-nav .flex-prev,
+.slider-bottom section .flexslider .flex-direction-nav .flex-next,
+.slider-bottom section .flexslider .flex-direction-nav .flex-disabled{
+    opacity: 1 !important;
+}
+.slider-bottom section .flexslider .flex-viewport{
+    background-color: #040404;
+}
+.slider-bottom section .flexslider .slides img{
+    border: 1px solid;
+    border-radius: 8px;
+}
 .slider-bottom-header{
     width: 100%;
+    text-align: center;
 }
 .slider-bottom-header-content{
     display: inline-block;
     margin: 0 auto;
+    padding: 10px 0px;
 }
 .slider-bottom-header hr{
-    width: 50px;
+    width: 80px;
     display: inline-block;
     margin: 0px;
-    border-top: 4px solid #eee;
+    border-top: 1px solid #eee;
+    padding-bottom: 7px;
 }
 .slider-bottom-header-text{
     display: inline-block;
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+}
+.flexslider .slides > li{
+    opacity: 0.5;
+}
+.flexslider .slides > li:hover{
+    opacity: 1;
 }
 .triangle-right{
     position: absolute;
@@ -358,7 +389,6 @@ a {color: #ce9702; text-decoration: none;}
     text-align: left;
 }
 .body-top, body-bottom{
-    margin-top: -40px;
     padding-right: 3px;
 }
 .body-bottom{
@@ -624,6 +654,9 @@ a {color: #ce9702; text-decoration: none;}
     .link-to-facebook ul{
         float: none;
         display: inline-block;
+    }
+    .slider-bottom-header hr{
+        width: 48px;
     }
 
 }
