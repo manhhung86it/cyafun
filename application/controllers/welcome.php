@@ -22,6 +22,7 @@ class Welcome extends MY_Controller {
      */
     public function index() {
         $this->user_manager->login_authenticate();
+        $this->data['title']  = 'Cya fun';
         $this->load('front_layout', 'welcome_message');
     }
 

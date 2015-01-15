@@ -1,61 +1,147 @@
-<div class="bannercontainer">
-    <div class="banner">
-        <div class="banner-caption">
-            <div>
-                <span class="caption-title">With Slider Revolution!</span><br />
-                <span class="caption-content">Unlimited again is there anyone who transaction again <br />is there anyone who because it is pleasure.</span>
-            </div>
-        </div>
-        <div class="banner-button"><a href="<?php echo site_url('register'); ?>">SIGN UP NOW</a></div>
-    </div>
-</div>
+<div class="body-top group">
+                    <div class="tab-header-before">
+                        <div class="tab-header-before-top"></div>
+                        <div class="tab-header-triangle"></div>
+                    </div>
+                    <div class="top-player col-sm-4">
+                        <div class="tab-header body-header"><img src="<?php echo base_url(); ?>public/img/icon-top-player.png" />TOP PLAYERS</div>
+                        <ul class="tabs">
+                            <li><a href="#today" class="active">Today</a></li>
+                            <li><a href="#week">This Week</a></li>
+                            <li><a href="#allTime">All Times</a></li>
+                        </ul>
+                        <div class="tab_container">
+                            <div id="today" class="tab_content">
+                                <ul>                                      
+                                    <li><div class="top-player-number">1</div><div class="top-player-content">kien</div><div class="top-player-count">2048</div></li>
+                                    <li><div class="top-player-number">1</div><div class="top-player-content">nguyen</div><div class="top-player-count">1024</div></li>
+                                    <li><div class="top-player-number">1</div><div class="top-player-content">van</div><div class="top-player-count">512</div></li>
+                                </ul> 
+                            </div>
 
-<!-- End Revolution Slider -->
+                            <div id="week" class="tab_content">
+                                <ul>  
+                                    <li><div class="top-player-number">1</div><div class="top-player-content"></div><div class="top-player-count"></div></li>
+                                    <li><div class="top-player-number">1</div><div class="top-player-content"></div><div class="top-player-count"></div></li>
+                                    <li><div class="top-player-number">1</div><div class="top-player-content"></div><div class="top-player-count"></div></li>
+                                    <li><div class="top-player-number">1</div><div class="top-player-content"></div><div class="top-player-count"></div></li>                                    
+                                </ul> 
+                            </div>
 
+                            <div id="allTime" class="tab_content">
+                                <ul> 
+                                    <li><div class="top-player-number">1</div><div class="top-player-content"></div><div class="top-player-count"></div></li>
+                                    <li><div class="top-player-number">1</div><div class="top-player-content"></div><div class="top-player-count"></div></li>
+                                    <li><div class="top-player-number">1</div><div class="top-player-content"></div><div class="top-player-count"></div></li>
+                                    <li><div class="top-player-number">1</div><div class="top-player-content"></div><div class="top-player-count"></div></li>
+                                </ul> 
+                            </div>
+                        </div>
 
-<!-- Start  Hero -->
-<div class="hero">
-    <div class="container">
-        <div class="hero-head">
-            <h1 class="hero-h1 animated">HOT FEATURES</h1>
-            <p class="hero-p animated">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae eros eget tellus tristique bibendum. Donec rutrum sed sem quis venenatis.</p>
-        </div>
-        <span id="service"></span>
-    </div>
-</div>
+                    </div>
 
-<!-- End Hero -->
-
-<div class="service">
-    <!-- Start service -->
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-sm-4">
-                <div class="service-item">
-                    <h3>Fully Responsive</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae eros eget tellus tristique bibendum.</p>
+                    <div class="recomment-game col-sm-8">
+                        <div class="recomment-game-header body-header"><div class="triangle-right" style="bottom: 30px; left: 5px;"></div>RECOMMENDED GAMES</div>
+                        <div class="recomment-game-header-content">
+                            <ul class="group">
+                                <li class="group">
+                                    <div class="recomment-game-image col-xs-5 col-sm-4"><img src="<?php echo base_url(); ?>public/img/2014-12-19_165651.jpg" class="img-responsive" /></div>
+                                    <div class="recomment-game-text col-xs-7 col-sm-8">
+                                        <h3>Lorem Ipsum is simply dummy text </h3>
+                                        Lorem Ipsum has been the industry’s standard dummy text ever since the 
+                                        1500s, when an unknown printer took a galley of type and scrambled it to 
+                                        make a type specimen book. It has survived not only five centuries, but also 
+                                        the leap into electronic typesetting, remaining essentially unchanged. It was 
+                                        popularised in the 1960s
+                                    </div>
+                                </li>
+                                <li class="group">
+                                    <div class="recomment-game-image col-xs-5 col-sm-4"><img src="<?php echo base_url(); ?>public/img/2014-12-19_165725.jpg" class="img-responsive" /></div>
+                                    <div class="recomment-game-text col-xs-7 col-sm-8">
+                                        <h3>Lorem Ipsum is simply dummy text </h3>
+                                        Lorem Ipsum has been the industry’s standard dummy text ever since the 
+                                        1500s, when an unknown printer took a galley of type and scrambled it to 
+                                        make a type specimen book. It has survived not only five centuries, but also 
+                                        the leap into electronic typesetting, remaining essentially unchanged. It was 
+                                        popularised in the 1960s
+                                    </div>
+                                </li>
+                                <li class="group">
+                                    <div class="recomment-game-image col-xs-5 col-sm-4"><img src="<?php echo base_url(); ?>public/img/2014-12-19_165746.jpg" class="img-responsive" /></div>
+                                    <div class="recomment-game-text col-xs-7 col-sm-8">
+                                        <h3>Lorem Ipsum is simply dummy text </h3>
+                                        Lorem Ipsum has been the industry’s standard dummy text ever since the 
+                                        1500s, when an unknown printer took a galley of type and scrambled it to 
+                                        make a type specimen book. It has survived not only five centuries, but also 
+                                        the leap into electronic typesetting, remaining essentially unchanged. It was 
+                                        popularised in the 1960s
+                                    </div>
+                                </li>                            
+                            </ul>
+                            <div class="">1,2,3,4</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="service-item">
-                    <h3>HTML3 & CSS3</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesenjt vitae eros eget tellus tristique bibendum.</p>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-4 service-item-img">
-                <img src="<?php echo base_url(); ?>public/img/mobile.png" alt="" title="" >
-            </div>
-            <div class="col-md-4 col-sm-4">
-                <div class="service-item">
-                    <h3>Font Awesome Icons</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesenjt vitae eros eget tellus tristique bibendum.</p>
-                </div>
-                <div class="service-item">
-                    <h3>Free to Download</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesenjt vitae eros eget tellus tristique bibendum.</p>
-                </div>
-            </div>
-        </div>
 
-    </div>
-    <span id="feature"></span>
-</div>	
-<!-- End Service -->
+                <div class="body-bottom group">
+                    <div class="game-focus col-sm-4">
+                        <div class="body-header"><img src="<?php echo base_url(); ?>public/img/icon-game-focus.png" />Game focus</div>
+                        <div class="game-focus-content"><img src="<?php echo base_url(); ?>public/img/2014-12-19_165651.jpg" class="img-responsive" /></div>
+                    </div>
+                    <div class="body-new col-sm-8">
+                        <div class="news-header body-header"><div class="triangle-right" style="bottom: 7px; left: 5px;"></div>News</div>
+                        <div class="body-new-content">
+                            <ul class="group">
+                                <li class="group col-xs-6">
+                                    <div class="recomment-game-image col-xs-5 col-sm-4"><img src="<?php echo base_url(); ?>public/img/2014-12-19_165651.jpg" class="img-responsive" /></div>
+                                    <div class="recomment-game-text col-xs-7 col-sm-8">
+                                        <h3>Lorem Ipsum is simply dummy text </h3>
+                                        Lorem Ipsum has been the industry’s standard dummy text ever since the 
+                                        1500s
+                                    </div>
+                                </li>
+                                <li class="group col-xs-6">
+                                    <div class="recomment-game-image col-xs-5 col-sm-4"><img src="<?php echo base_url(); ?>public/img/2014-12-19_165725.jpg" class="img-responsive" /></div>
+                                    <div class="recomment-game-text col-xs-7 col-sm-8">
+                                        <h3>Lorem Ipsum is simply dummy text </h3>
+                                        Lorem Ipsum has been the industry’s standard dummy text ever since the 
+                                        1500s
+                                    </div>
+                                </li>
+                                <li class="group col-xs-6">
+                                    <div class="recomment-game-image col-xs-5 col-sm-4"><img src="<?php echo base_url(); ?>public/img/2014-12-19_165746.jpg" class="img-responsive" /></div>
+                                    <div class="recomment-game-text col-xs-7 col-sm-8">
+                                        <h3>Lorem Ipsum is simply dummy text </h3>
+                                        Lorem Ipsum has been the industry’s standard dummy text ever since the 
+                                        1500s
+                                    </div>
+                                </li>  
+                                <li class="group col-xs-6">
+                                    <div class="recomment-game-image col-xs-5 col-sm-4"><img src="<?php echo base_url(); ?>public/img/2014-12-19_165651.jpg" class="img-responsive" /></div>
+                                    <div class="recomment-game-text col-xs-7 col-sm-8">
+                                        <h3>Lorem Ipsum is simply dummy text </h3>
+                                        Lorem Ipsum has been the industry’s standard dummy text ever since the 
+                                        1500s
+                                    </div>
+                                </li>
+                                <li class="group col-xs-6">
+                                    <div class="recomment-game-image col-xs-5 col-sm-4"><img src="<?php echo base_url(); ?>public/img/2014-12-19_165725.jpg" class="img-responsive" /></div>
+                                    <div class="recomment-game-text col-xs-7 col-sm-8">
+                                        <h3>Lorem Ipsum is simply dummy text </h3>
+                                        Lorem Ipsum has been the industry’s standard dummy text ever since the 
+                                        1500s
+                                    </div>
+                                </li>
+                                <li class="group col-xs-6">
+                                    <div class="recomment-game-image col-xs-5 col-sm-4"><img src="<?php echo base_url(); ?>public/img/2014-12-19_165746.jpg" class="img-responsive" /></div>
+                                    <div class="recomment-game-text col-xs-7 col-sm-8">
+                                        <h3>Lorem Ipsum is simply dummy text </h3>
+                                        Lorem Ipsum has been the industry’s standard dummy text ever since the 
+                                        1500s
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="">1,2,3,4</div>
+                        </div>
+                    </div>
+                </div>

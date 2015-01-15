@@ -47,9 +47,9 @@ class User_manager {
             $dataResult = 0;
             return $dataResult;
         }
-        $this->CI->load->model('administrator_model', 'administrator');
+        $this->CI->load->model('admin_model', 'admin');
 
-        $user = $this->CI->administrator->getUserLogin($uname, $pass);
+        $user = $this->CI->admin->getUserLogin($uname, $pass);
         if (!empty($user)) {
             $this->updateAdminSession($user);
         } else {
@@ -59,7 +59,7 @@ class User_manager {
     }
 
     public function updateAdminSession($user) {
-        unset($user['password']);
+        unset($user['ad_password']);
         $this->CI->session->set_userdata('admin', $user);
     }
 
@@ -209,7 +209,7 @@ class User_manager {
             $error['email'] = 'Email already exists';
         return $error;
     }
-
+// validate cho phan user cua cya fun
     public function userCreateValidate($user, $id = null, $file) {
         $this->CI->load->model('user_model', 'user');
         $error = array();
@@ -249,6 +249,45 @@ class User_manager {
             }
             if (!$containsLetter || !$containsDigit) {
                 $error['us_password'] = 'Minimum of 7 characters.  At least one must be numeric and at least one must be alpha';
+            }
+        }
+
+        return $error;
+    }
+    // validate cho user admin cua cya fun
+     public function userAdminValidate($user, $id = null) {
+        $this->CI->load->model('admin_model');
+        $error = array();
+        
+        if (empty($user['ad_username'])) {
+            $error['ad_username'] = 'Please enter user name';
+        }
+
+        if (empty($user['ad_fullname'])) {
+            $error['ad_fullname'] = 'Please enter full name';
+        }
+        
+        if (empty($user['ad_email']) || !valid_email($user['ad_email'])) {
+            $error['ad_email'] = 'Email invalid';
+        }
+
+        $emailExistsWhere['ad_email'] = $user['ad_email'];
+        if (!empty($id)) {
+            $emailExistsWhere['ad_id !='] = $id;
+        }
+
+        $checkEmailExists = $this->CI->admin_model->getUser($emailExistsWhere);
+        if (!empty($checkEmailExists))
+            $error['us_email'] = 'Email already exists';
+
+        $containsLetter = preg_match('/[a-zA-Z]/', $user['ad_password']);
+        $containsDigit = preg_match('/\d/', $user['ad_password']);
+        if (empty($id) || (!empty($id) && strlen($user['ad_password']) > 0)) {
+            if (empty($user['ad_password']) || strlen($user['ad_password']) < 7) {
+                $error['ad_password'] = 'Minimum of 7 characters.  At least one must be numeric and at least one must be alpha';
+            }
+            if (!$containsLetter || !$containsDigit) {
+                $error['ad_password'] = 'Minimum of 7 characters.  At least one must be numeric and at least one must be alpha';
             }
         }
 
