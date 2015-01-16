@@ -226,6 +226,10 @@ a {color: #ce9702; text-decoration: none;}
     border: none;
     min-height: 32px;
 }
+.cya-search button:hover{
+    background: none;
+    border: none;
+}
 .cya-search button span{
     color: #c00c0c;
 }
@@ -662,7 +666,12 @@ a {color: #ce9702; text-decoration: none;}
         float: none;
         display: inline-block;
     }
-
+    .tabs li a{
+        padding: 0 12px;
+    }
+    .tab_container, .tab-header, .game-focus-content{
+        width: 247px;
+    }
 
 
 }
