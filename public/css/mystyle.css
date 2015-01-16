@@ -83,7 +83,7 @@ a {color: #ce9702; text-decoration: none;}
     font-family: Gretoon;
     color: #e9642b;
     text-indent: -9999;
-    background: url("../img/logo.png") no-repeat top left;
+    background: url("../img/cya-fun-logo.png") no-repeat center;
 }
 .right-header{
     padding-top: 10px;
@@ -261,6 +261,7 @@ a {color: #ce9702; text-decoration: none;}
 }
 .how-to-play{
     padding-top: 50px;
+    padding-bottom: 5px;
 }
 .how-to-play-content{
     min-height: 135px;
@@ -439,11 +440,11 @@ a {color: #ce9702; text-decoration: none;}
 }
 .tabs {height: 33px;border-left: 1px solid #bcd4da;}
 .tabs li {float: left;line-height: 31px;border-top: 1px solid #c5c5c5;}
-.tabs li a {color: white;display: block;padding: 0 12px;background-color: #0f0f0f;}
+.tabs li a {color: white;display: block;padding: 0 28px;background-color: #0f0f0f;}
 .tabs li:last-child a {padding: 0px 17px 0px 16px;}
 .tabs li a:hover {background-color: #fff; color: #000;}
 .tabs li a.active {background-color: #fff;color: #000;}
-.tab_container {border: 1px solid #bcd4da;border-top: none;margin:  0px 0px 20px 0px; width: 247px; min-height: 300px;}
+.tab_container {border: 1px solid #bcd4da;border-top: none;margin:  0px 0px 20px 0px; width: 311px; min-height: 300px;}
 .tab_content {padding: 15px 0px 15px 0px;}
 .tab_content ul li {padding: 7px 0px;}
 .tab_content ul li:nth-child(odd) {background: #e8e8e8;}
@@ -451,9 +452,13 @@ a {color: #ce9702; text-decoration: none;}
 .tab_content ul li a:hover {color: #ce9702;}
 .game-focus-content{
     padding-top: 4px;
+    width: 311px;
+}
+.game-focus-content img{
+    width: 100%;
 }
 .tab-header{
-    width: 247px;
+    width: 311px;
     background-color: #ebebeb;
     border: 1px solid #d0d0d0;
     margin-bottom: 10px;
@@ -552,6 +557,15 @@ a {color: #ce9702; text-decoration: none;}
 
 /* Tablet Portrait size to standard 960 (devices and browsers) */
 @media only screen and (min-width: 768px) and (max-width: 959px) {
+    .tabs li a{
+        padding: 0 12px;
+    }
+    .recomment-game, .body-new{
+        padding: 0px;
+    }
+    .tab_container, .tab-header, .game-focus-content{
+        width: 247px;
+    }
 }
 
 /* All Mobile Sizes (devices and browser) */
@@ -571,6 +585,7 @@ a {color: #ce9702; text-decoration: none;}
     }
     button.navbar-toggle{
         float: left;
+        margin-left: 5px;
     }
     .cya-search{
         display: none;
@@ -581,6 +596,7 @@ a {color: #ce9702; text-decoration: none;}
         margin-top: 8px;
         margin-right: 16px;
         float: right;
+        padding-right: 7px;
     }
     .cya-search-second .form-group{
         float: right;
@@ -588,7 +604,7 @@ a {color: #ce9702; text-decoration: none;}
     }
     .cya-search-second  button{
         position: absolute;
-        right: 5px;
+        right: 10px;
         padding-top: 8px;
         border: none;
     }
@@ -600,57 +616,6 @@ a {color: #ce9702; text-decoration: none;}
     }
     .game-focus-content{
         padding-left: 20px;
-    }
-
-
-}
-
-/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
-@media only screen and (min-width: 480px) and (max-width: 767px) {
-    .player-online{
-        width: 11%;
-    }
-    .left-header{
-        background: url("../img/logo.png") no-repeat;
-        background-position: 60% 0px;
-    }
-}
-
-/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
-@media only screen and (max-width: 479px) { 
-    .player-online{
-        width: 16%;
-    }
-    .body-new-content .recomment-game-image,.body-new-content .recomment-game-text{
-        width: 80%;
-    }
-    .body-new-content .recomment-game-text h3{
-        padding-top: 10px;
-    }
-    .left-header{
-        background: url("../img/logo.png") no-repeat;
-        background-position: 80% 0px;
-    }
-    .right-header-top-content{
-        display: inline-block;
-    }
-    .player-online{
-        width: 51px;
-        padding-left: 7px;
-        background-position: -11px;
-    }
-    .player-online-content{
-        width: 120px;
-    }
-    .language-box{
-        display: none;
-    }
-    .language-box-second{
-        display: inline-block;
-        width: auto;
-    }
-    .language-box-second select{
-        float: none;
     }
     .header-invisible{
         padding-bottom: 10px;
@@ -666,6 +631,27 @@ a {color: #ce9702; text-decoration: none;}
     .btn-login span{
         width: 2%;
         background: none;
+    }    
+    .language-box{
+        display: none;
+    }
+    .language-box-second{
+        display: inline-block;
+        width: auto;
+    }
+    .language-box-second select{
+        float: none;
+    }
+    .right-header-top-content{
+        display: inline-block;
+    }
+    .player-online{
+        width: 51px;
+        padding-left: 7px;
+        background-position: -11px;
+    }
+    .player-online-content{
+        width: 120px;
     }
     .link-to-facebook{
         width: 100%;
@@ -675,6 +661,23 @@ a {color: #ce9702; text-decoration: none;}
     .link-to-facebook ul{
         float: none;
         display: inline-block;
+    }
+
+
+
+}
+
+/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+}
+
+/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+@media only screen and (max-width: 479px) { 
+    .body-new-content .recomment-game-image,.body-new-content .recomment-game-text{
+        width: 80%;
+    }
+    .body-new-content .recomment-game-text h3{
+        padding-top: 10px;
     }
     .slider-bottom-header hr{
         width: 48px;

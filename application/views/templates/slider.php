@@ -96,10 +96,10 @@
             $(window).load(function() {
                 $('.flexslider').flexslider({
                     animation: "slide",
-                    animationLoop: false,
+//                    animationLoop: false,
                     itemWidth: 260,
                     itemMargin: 5,
-                    pausePlay: true,
+//                    pausePlay: true,
                     controlNav: false,
                     start: function(slider) {
                         $('body').removeClass('loading');
