@@ -131,6 +131,9 @@ a {color: #ce9702; text-decoration: none;}
     min-height: 30px;
     line-height: 30px;
 }
+.header-invisible .btn-login{
+    display: none;
+}
 .btn-login{
     padding-left: 10px;
     float: left;
@@ -239,6 +242,7 @@ a {color: #ce9702; text-decoration: none;}
 .slider-top{
     min-height: 293px;
     background: url("../img/slide-background.png") no-repeat;
+    background-color: #0d0d0d;
 }
 .nivoSlider{
     width: 99.3% ;
@@ -575,7 +579,8 @@ a {color: #ce9702; text-decoration: none;}
         width: 75%;
         display: inline-block;
         margin-top: 8px;
-        margin-right: 16px
+        margin-right: 16px;
+        float: right;
     }
     .cya-search-second .form-group{
         float: right;
@@ -586,6 +591,15 @@ a {color: #ce9702; text-decoration: none;}
         right: 5px;
         padding-top: 8px;
         border: none;
+    }
+    .btn-login{
+        display: none;
+    }
+    .header-invisible .btn-login{
+        display: inline-block;
+    }
+    .game-focus-content{
+        padding-left: 20px;
     }
 
 
@@ -633,25 +647,25 @@ a {color: #ce9702; text-decoration: none;}
     }
     .language-box-second{
         display: inline-block;
-        width: 100%;
-        padding-top: 10px;
+        width: auto;
     }
     .language-box-second select{
-        width: 60%;
         float: none;
-        margin: auto;
+    }
+    .header-invisible{
+        padding-bottom: 10px;
     }
     .btn-login{
-        width: 60%;
-        margin: auto;
-        float: none;
+        float: left;
         padding-left: 0px
     }
     .btn-login div{
-        width: 49%;
+        width: 30%;
+        background: none;
     }
     .btn-login span{
         width: 2%;
+        background: none;
     }
     .link-to-facebook{
         width: 100%;
