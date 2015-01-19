@@ -1,32 +1,4 @@
 <div class="cya-slider">
-    <div class="slider-top group">
-        <div class="mainslider group">
-            <ul class="slides">
-                <li>
-                    <img src="<?php echo base_url(); ?>public/img/2014-12-19_165651.jpg" />
-                </li>
-                <li>
-                    <img src="<?php echo base_url(); ?>public/img/2014-12-19_165725.jpg" />
-                </li>
-                <li>
-                    <img src="<?php echo base_url(); ?>public/img/spin-and-go-hp-1.jpg" />
-                </li>
-                <li>
-                    <img src="<?php echo base_url(); ?>public/img/2014-12-19_165725.jpg" />
-                </li>
-            </ul>
-        </div>
-        <script type="text/javascript">
-            $(window).load(function() {
-                $('.mainslider').flexslider({
-                    animation: "slide",
-                    start: function(slider) {
-                        $('body').removeClass('loading');
-                    }
-                });
-            });
-        </script>
-    </div>
 
     <div class="how-to-play group">
         <div class="how-to-play-content how-to-play-content-first col-xs-6  col-sm-3">

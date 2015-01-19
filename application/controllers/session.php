@@ -31,6 +31,7 @@ class Session extends MY_Controller {
             } else
                 $this->data['error'] = 'Wrong email/password';
         }
+        $this->data['title'] = 'Cya fun';
         $this->load('front_layout', 'session/login');
     }
 

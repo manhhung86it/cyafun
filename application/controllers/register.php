@@ -67,6 +67,7 @@ class Register extends MY_Controller {
                 $this->data['data_error'] = $validate;
             }
         }
+        $this->data['title'] = 'register';
         $this->load('front_layout', 'session/register');
     }
 

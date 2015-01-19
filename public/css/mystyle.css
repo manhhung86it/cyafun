@@ -59,7 +59,7 @@ body { font: 14px Arial;}
 */
 h1, h2, h3, h4, h5 {}
 a img { border: 0; }
-a {color: #ce9702; text-decoration: none;}
+a {color: #c00c0c; text-decoration: none;}
 .zoomer:active { top: 0; }
 
 .cya-body{ background: url("../img/background.png")top left;}
@@ -79,11 +79,15 @@ a {color: #ce9702; text-decoration: none;}
     text-align: center;
 }
 .left-header{
+    padding-top: 20px;
     font-size: 42px;
     font-family: Gretoon;
     color: #e9642b;
-    text-indent: -9999;
-    background: url("../img/cya-fun-logo.png") no-repeat center;
+/*    text-indent: -9999;
+    background: url("../img/cya-fun-logo.png") no-repeat center;*/
+}
+.left-header a{
+    font-size: 42px;
 }
 .right-header{
     padding-top: 10px;
@@ -142,6 +146,9 @@ a {color: #ce9702; text-decoration: none;}
     width: 43%;
     float: left;
     background-color: #a00a0a;
+}
+.btn-login a{
+    color: #fff;
 }
 .btn-login span{
     display: inline-block;
@@ -541,6 +548,84 @@ a {color: #ce9702; text-decoration: none;}
     text-align: right;
 }
 
+
+
+/* form khac */
+
+/* login */
+.form-area h1{
+    font-weight: bold;
+    font-size: 30px;
+    color: #c00c0c;
+    padding: 30px 0px;
+    text-align: center;
+}
+.register-submit{
+    text-align: center;
+}
+.input-update{
+    width: 30%;
+    margin: auto;
+    padding-top: 10px
+}
+.input-update .input-group{
+    width: 100%;
+    border: 1px solid #9d9d9d;
+    border-radius: 5px;
+}
+.input-update label.label-input{
+    font-size: 16px;
+    padding: 10px 0px;
+}
+.input-update .input-group input, .input-update .input-group input:focus{
+    width: 90%;
+    border: none;
+    min-height: 40px;
+    font-family: Arial;
+    font-size: 16px;
+}
+.input-update .input-group i{
+    font-size: 1.5em;
+    color: #c4c4c4;
+    padding-left: 4px;
+}
+.register-submit{
+    padding-top: 10px;
+}
+.login-message-error{
+    background-color: #fff0e6;
+    border-color: #edd4bb;
+    color: #e68f5f;
+    font-size: 14px;
+    text-align: left;
+    position: relative;
+    margin-bottom: 10px;
+}
+.login-message-error:before{
+    content: "";
+    position: absolute;
+    top: 41px;
+    left: 15px;
+    border-top: 11px solid;
+    border-top-color: #edd4bb;
+    border-left: 10px solid #fff;
+    border-right: 11px solid #fff;
+}
+.login-message-error:after{
+    content: "";
+    position: absolute;
+    top: 41px;
+    left: 15px;
+    border-top: 10px solid #fff0e6;
+    border-top-color: #fff0e6;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+}
+.input-update label.error{
+    font-size: 13px;
+    color: #FA2929;
+}
+/* */
 @media only screen and (min-width: 1200px) {
 
     .slider-bottom section .flexslider .flex-direction-nav .flex-prev{
@@ -672,6 +757,9 @@ a {color: #ce9702; text-decoration: none;}
     .tab_container, .tab-header, .game-focus-content{
         width: 247px;
     }
+    .input-update{
+        width: 40%;
+    }
 
 
 }
@@ -691,5 +779,13 @@ a {color: #ce9702; text-decoration: none;}
     .slider-bottom-header hr{
         width: 48px;
     }
+    .input-update{
+        width: 80%;
+    }
 
+}
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+    .input-update{
+        width: 60%;
+    }
 }

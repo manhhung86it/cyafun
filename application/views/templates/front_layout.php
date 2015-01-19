@@ -7,7 +7,13 @@
             var public_url = '<?php echo base_url() . '/public/'; ?>';
 
         </script>
-        <title><?php echo $title; ?></title>
+        <title><?php
+            if (!empty($title))
+                echo $title;
+            else
+                echo 'Cya fun';
+            ?>
+        </title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="UTF-8">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -30,14 +36,13 @@
     </head>
     <body class="cya-body">
         <div class="cya-container">
-            <?php echo $this->load->view("templates/header"); ?>
-            <?php echo $this->load->view("templates/slider"); ?>
+                <?php echo $this->load->view("templates/header"); ?>
 
             <div class="body group">
-                <?php echo $body; ?>
+            <?php echo $body; ?>
             </div>
 
-            <?php echo $this->load->view("templates/footer"); ?>
+<?php echo $this->load->view("templates/footer"); ?>
 
         </div>
     </body>

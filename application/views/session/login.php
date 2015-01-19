@@ -1,36 +1,51 @@
 <section id="banner-area">
-    <div class="login-logo">
-        <img src="<?php echo base_url(); ?>public/img/login-logo.png" alt="" title="" height="150" width="150">
-    </div>
     <div class="wrapper login-form">
-
         <div class="row-fluid" style="width: 100%;text-align: center;">
             <div class="span4 login">
-                <form class="form-area" id="form-area" name="form-area" action="" method="post">
-                    <h1>Dashboard Login</h1>
+                <form class="form-area form-login" id="form-login" name="form-login" action="" method="post">
+                    <h1>LOGIN</h1>
                     <?php if (!empty($error)): ?>
-                        <div class="alert alert-danger login-message-error"><?php echo $error; ?></div>
+                        <div class="alert alert-danger login-message-error input-update"><?php echo $error; ?></div>
                     <?php endif; ?>
-                        
-                    <div class="email-login-icon">
-                        <i class="fa fa-user"></i>
-                        <input type="text" placeholder="Enter username" name="username" id="username">
+
+                    <div class="form-group input-update">
+                        <div class="input-group">
+                            <input type="text" placeholder="Enter username" name="username" id="username">
+                            <i class="fa fa-user"></i>
+                        </div>
+                        <?php if (!empty($data_error['username'])): ?>
+                            <label for="username" class="error"><?php echo $data_error['username'] ?></label>
+                        <?php endif; ?>
+                        <div id="username_validate">
+                        </div>
                     </div>
-                        
-                    <div class="icon-pass-login">
-                        <i class="fa fa-lock"></i>
-                        <input type="password" placeholder="Enter your password" name="password" id="password">	
+
+                    <div class="form-group input-update">
+                        <div class="input-group">
+                            <input type="password" placeholder="Enter your password" name="password" id="password">	
+                            <i class="fa fa-lock"></i>
+                        </div>
+                        <?php if (!empty($data_error['password'])): ?>
+                            <label for="password" class="error"><?php echo $data_error['password'] ?></label>
+                        <?php endif; ?>
+                        <div id="password_validate">
+                        </div>
                     </div>
-                        
-                    <div class="remember-me">
-                        <input style="width: 5%;" name="remember" id="remember_me" value="remember" type="checkbox" /><label for="remember">Remember Me</label>
+                    <div class="register-submit">
+                        <input type="submit" class="btn btn-success" value="LOGIN" name="login">
                     </div>
-                        
-                    <a style="margin-top: 5px;" class="float-right forgot-password" href="<?php echo site_url('forgot-password') ?>">Forgot Password?</a>
-                    <input type="submit" value="LOGIN" name="login">
-                    <div class="login-or">OR</div>
-                    <div>
-                        <a class="cya-button" href="<?php echo site_url('register'); ?>">SIGN UP</a>
+
+                    <div class="remember-me input-update group">
+                        <div class='pull-left'>
+                            <input style="" name="remember" id="remember_me" value="remember" type="checkbox" /><label for="remember">Keep me signed in</label>
+                        </div>
+                        <div class="pull-right">
+                            <a style="margin-top: 5px;" class="float-right forgot-password" href="<?php echo site_url('forgot-password') ?>">Forgot Password?</a>
+                        </div>
+                    </div>
+
+                        <div class="input-update">
+                        Don’t have an account?<span><a class="cya-button" href="<?php echo site_url('register'); ?>"> Register Now</a></span>
                     </div>
                 </form>
             </div>

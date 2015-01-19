@@ -15,6 +15,7 @@ class Account extends MY_Controller {
             else
                 $this->data['error'] = $result['message'];
         }
+        $this->data['title'] = 'fogot password';
         $this->load('front_layout', 'account/forgot-pass');
     }
 

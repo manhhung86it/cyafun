@@ -24,23 +24,30 @@
                         <?php if (!empty($success)): ?>
                             <div class="alert alert-success"><?php echo $success; ?></div>
                         <?php endif; ?>
-                            <div class="reset-pass-input">
-                        <input type="password" placeholder="Enter your Password" name="password" id="password" c>
+                        <div class="form-group input-update">
+                            <div class="input-group">
+                                <input type="password" placeholder="Enter your Password" name="password" id="password" c>
                             </div>
                             <div id="password_validate" class="password_validate">
-                        <?php if (!empty($data_error['password'])): ?>
-                            <label for="password" class="error"><?php echo $data_error['password'] ?></label>
-                        <?php endif; ?>
+                                <?php if (!empty($data_error['password'])): ?>
+                                    <label for="password" class="error"><?php echo $data_error['password'] ?></label>
+                                <?php endif; ?>
                             </div>
-                             <div class="reset-pass-input">
-                        <input type="password" placeholder="Confirm your Password" name="re_password" id="re_password">
-                             </div>
+                        </div>
+
+                        <div class="form-group input-update">
+                            <div class="input-group">
+                                <input type="password" placeholder="Confirm your Password" name="re_password" id="re_password">
+                            </div>
                             <div id="re_password_validate" class="re_password_validate">
-                        <?php if (!empty($data_error['re_password'])): ?>
-                            <label for="re_password" class="error"><?php echo $data_error['re_password'] ?></label>
-                        <?php endif; ?>
+                                <?php if (!empty($data_error['re_password'])): ?>
+                                    <label for="re_password" class="error"><?php echo $data_error['re_password'] ?></label>
+                                <?php endif; ?>
                             </div>
-                        <input type="submit" value="Reset Password" name="reset_pass">
+                        </div>
+                        <div class="register-submit">
+                            <input class="btn btn-success" type="submit" value="Reset Password" name="reset_pass">
+                        </div>
                     </form>
                 </div>
                 <!-- End Download / Sign Up Form -->
