@@ -17,7 +17,7 @@
             <?php if (!empty($data_error['firstname'])): ?>
                 <label for="firstname" class="error"><?php echo $data_error['firstname'] ?></label>
             <?php endif; ?>
-            <div id="InputFirstname_validate">
+            <div id="InputUsername_validate">
             </div>
         </div>
 
@@ -42,7 +42,7 @@
             <?php if (!empty($data_error['lastname'])): ?>
                 <label for="lastname" class="error"><?php echo $data_error['lastname'] ?></label>
             <?php endif; ?>
-            <div id="InputLastName_validate">
+            <div id="InputDisplayName_validate">
             </div>
 
         </div>

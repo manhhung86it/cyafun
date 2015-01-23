@@ -83,8 +83,8 @@ a {color: #c00c0c; text-decoration: none;}
     font-size: 42px;
     font-family: Gretoon;
     color: #e9642b;
-/*    text-indent: -9999;
-    background: url("../img/cya-fun-logo.png") no-repeat center;*/
+    /*    text-indent: -9999;
+        background: url("../img/cya-fun-logo.png") no-repeat center;*/
 }
 .left-header a{
     font-size: 42px;
@@ -401,6 +401,9 @@ a {color: #c00c0c; text-decoration: none;}
 }
 
 /* body */
+.body{
+    min-height: 360px;
+}
 .body group{
     text-align: left;
 }
@@ -577,12 +580,14 @@ a {color: #c00c0c; text-decoration: none;}
     font-size: 16px;
     padding: 10px 0px;
 }
-.input-update .input-group input, .input-update .input-group input:focus{
+.input-update .input-group input, .input-update .input-group input:focus,
+.input-update .input-group select, .input-update .input-group select:focus{
     width: 90%;
     border: none;
     min-height: 40px;
     font-family: Arial;
     font-size: 16px;
+    padding-left: 5px;
 }
 .input-update .input-group i{
     font-size: 1.5em;
@@ -624,6 +629,37 @@ a {color: #c00c0c; text-decoration: none;}
 .input-update label.error{
     font-size: 13px;
     color: #FA2929;
+}
+
+.tab-menu{
+    padding-bottom: 20px;
+}
+#tabs-form-payment{
+    padding-top: 50px;
+}
+table{
+    margin: auto;
+}
+table tr td{
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+}
+table tr td.payment-data{
+    text-align: center;
+}
+
+.setting-dashboard-left{
+    text-align: center;
+}
+.setting-container-title-hidden{
+    display: none;
+}
+.setting-dashboard-content{
+    min-height: 40px;
+}
+input[type=file]{
+    display: inline-block;
 }
 /* */
 @media only screen and (min-width: 1200px) {
@@ -760,7 +796,21 @@ a {color: #c00c0c; text-decoration: none;}
     .input-update{
         width: 40%;
     }
-
+    .setting-dashboard-left{
+        padding-top: 50px;
+    }
+    .setting-dashboard-right{
+        padding-bottom: 50px;
+    }
+    .setting-container-title-hidden{
+        display: block;
+    }
+    .setting-container-title{
+        display: none;
+    }
+    .setting-dashboard-content{
+        text-align: center;
+    }
 
 }
 
