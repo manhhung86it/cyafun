@@ -1,13 +1,13 @@
 <div class="" id="tabs-form-payment">
     <div class="tab-menu" id="tab-menu">
-        <?php if ($mobile): ?>
+        <?php if (isset($mobile) && $mobile): ?>
             <div class="input-update"><input type="radio" name="tab-menu-content" value="#mobile" />mobile</div>
         <?php endif; ?>
-        <?php if ($pm): ?>
+        <?php if (isset($pm) && $pm): ?>
             <div class="input-update"><input type="radio" name="tab-menu-content" value="#pm" />pm</div>   
         <?php endif; ?>
     </div>
-    <?php if ($mobile): ?>
+    <?php if (isset($mobile) && $mobile): ?>
         <form role="form" method="post" action="" id="mobile" class="span8" enctype="multipart/form-data">                     
             <div class="form-group input-update">
                 <label for="number">Ma the: * </label> 
@@ -61,7 +61,7 @@
             </div>
         </form>
     <?php endif; ?>
-    <?php if ($pm): ?>
+    <?php if (isset($pm) && $pm): ?>
         <form role="form" method="post" action="" id="pm" class="span8" enctype="multipart/form-data">                      
             <div class="form-group input-update">
                 <label for="number">coin :</label>
