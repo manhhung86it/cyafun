@@ -45,37 +45,27 @@ class Setting_manager {
 
         return $error;
     }
-     public function restaurantValidate($data, $id = 0) {
+     public function paymentValidate($data) {
         
         $error = array();
-        $this->CI->load->model('restaurant_model');
+        if (empty($data['code'])) {
 
-        if (empty($data['address1'])) {
-
-            $error['address1'] = 'Please input address1';
-        }
-        if (empty($data['address2'])) {
-
-            $error['address2'] = 'Please input address2';
-        }
-        if (empty($data['suburb'])) {
-
-            $error['suburb'] = 'Please input suburd';
-        }
-        if (empty($data['postcode'])) {
-
-            $error['postcode'] = 'Please input postcode';
-        }
-        if (!empty($data['postcode']) && !is_numeric($data['postcode'])) {
-            $error['postcode'] = 'Please enter valid postcode';
-        }
-        if (empty($data['state'])) {
-
-            $error['state'] = 'Please input state';
+            $error['code'] = 'Please input code';
         }
         if (empty($data['name'])) {
 
-            $error['name'] = 'Please input name of restaurant';
+            $error['name'] = 'Please input name';
+        }
+        if (empty($data['rate'])) {
+
+            $error['rate'] = 'Please input rate';
+        }
+        if (empty($data['currency'])) {
+
+            $error['currency'] = 'Please input currency';
+        }
+        if (!empty($data['rate']) && !is_numeric($data['rate'])) {
+            $error['rate'] = 'Please enter valid rate';
         }
         return $error;
     }

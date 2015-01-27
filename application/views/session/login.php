@@ -31,20 +31,24 @@
                         <div id="password_validate">
                         </div>
                     </div>
+                        
+                    <div class="form-group input-update group">
+                        <div class='pull-left'>
+                            <input style="" name="remember" id="remember_me" value="remember" type="checkbox" /><label for="remember">Keep me signed in</label>
+                        </div>
+                    </div>
+                        
                     <div class="register-submit">
                         <input type="submit" class="btn btn-success" value="LOGIN" name="login">
                     </div>
 
                     <div class="remember-me input-update group">
-                        <div class='pull-left'>
-                            <input style="" name="remember" id="remember_me" value="remember" type="checkbox" /><label for="remember">Keep me signed in</label>
-                        </div>
-                        <div class="pull-right">
+                        <div>
                             <a style="margin-top: 5px;" class="float-right forgot-password" href="<?php echo site_url('forgot-password') ?>">Forgot Password?</a>
                         </div>
                     </div>
 
-                        <div class="input-update">
+                    <div class="input-update">
                         Don’t have an account?<span><a class="cya-button" href="<?php echo site_url('register'); ?>"> Register Now</a></span>
                     </div>
                 </form>

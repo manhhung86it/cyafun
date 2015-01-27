@@ -13,11 +13,16 @@ class Payment extends MY_Controller {
     }
 
     public function createPayment() {
+        $this->load->model('payment_model');
+        $results = $this->payment_model->getPayment();
+        foreach ($results as $result) {
+            $this->data[$result->payment_code] = $result->payment_status;
+        }
         $this->load('front_layout', 'payment/payment');
     }
 
     public function success() {
-        $this->load('front_layout','payment/mobile_payment');
+        $this->load('front_layout', 'payment/mobile_payment');
     }
 
     public function mobilePayment() {
