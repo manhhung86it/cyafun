@@ -194,6 +194,9 @@
     margin: 0px;
     background-color: #4c8fbd;
 }
-.form-group{
+.tabs-border .form-group{
     max-height: 40px;
+}
+.tabs-border .form-group input{
+    width: 90%;
 }

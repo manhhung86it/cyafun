@@ -4,7 +4,7 @@
 
 </div><!-- /.page-header -->
 <div class="row">
-    <div class="col-xs-4 tabs-border center-block">
+    <div class="col-xs-6 tabs-border center-block">
         <div>
             <ul class="tabs">
                 <li><a href="#Informations" class="active">Informations</a></li>
@@ -39,11 +39,9 @@
             </div>
             <div class="space-4"></div>
             <div class="form-group">
-                <div class="form-group">
-                    <label class="col-sm-3 control-label no-padding-right" for="name">Code *: </label>
-                    <div class="col-sm-9">
-                        <input type="text" id="name" autocomplete="off" value="<?php echo!empty($payment['payment_code']) ? $payment['payment_code'] : '' ?>" name="code" placeholder="code" />
-                    </div>
+                <label class="col-sm-3 control-label no-padding-right" for="name">Code *: </label>
+                <div class="col-sm-9">
+                    <input type="text" id="name" autocomplete="off" value="<?php echo!empty($payment['payment_code']) ? $payment['payment_code'] : '' ?>" name="code" placeholder="code" />
                 </div>
             </div>
             <div class="space-4"></div>
@@ -73,7 +71,7 @@
             <div class="space-4"></div>
 
             <div class="clearfix form-actions">
-                <div class="col-md-offset-3 col-md-9">
+                <div style="text-align: center;">
                     <input type="submit" value="submit" name="submit_information" class="btn btn-success">
                 </div>
             </div>
@@ -100,7 +98,7 @@
             <?php } ?>
 
             <div class="clearfix form-actions">
-                <div class="col-md-offset-3 col-md-9">
+                <div style="text-align: center;">
                     <input type="submit" value="submit" name="submit_option" class="btn btn-success">
                 </div>
             </div>

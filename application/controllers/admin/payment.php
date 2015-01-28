@@ -26,7 +26,6 @@ class Payment extends MY_Controller {
     }
 
     public function update($id = 0) {
-
         $this->data['breadcrumbs'][] = array('link' => site_url('admin/payment'), 'title' => 'payment manager');
         $this->data['breadcrumbs'][] = array('title' => 'Edit');
         $this->load->model('payment_model');
@@ -94,7 +93,7 @@ class Payment extends MY_Controller {
         }
         $this->data['paymentOptions'] = $dataPaymentOption;
         $this->data['payment'] = $dataPayment;
-        $this->load('admin_layout', 'admin/payment');
+        $this->load('admin_layout', 'admin/payment/update');
     }
 
 }
