@@ -21,7 +21,7 @@ class Welcome extends MY_Controller {
      * @see http://codeigniter.com/user_guide/general/urls.html
      */
     public function index() {
-        $this->user_manager->login_authenticate();
+        //$this->user_manager->login_authenticate();
         $this->data['title']  = 'Cya fun';
         $this->load('front_layout', 'welcome_message');
     }
