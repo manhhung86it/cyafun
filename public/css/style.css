@@ -69,7 +69,7 @@
 }
 .dataTable>thead>tr>th.sorting_desc, .dataTable>thead>tr>th.sorting_asc,.dataTable>thead>tr>th[class*=sort]{
     background-image: none !important;
-    color: #fff;
+    color: #000;
     border: none ;
     text-align: center;
 }
@@ -174,11 +174,11 @@
     color: #000;
 }
 .tabs {height: 33px;border-left: 1px solid #bcd4da;}
-.tabs li {float: left;line-height: 31px;border-top: 1px solid #c5c5c5;list-style: none;}
-.tabs li a {color: #000;display: block;padding: 0 28px;background-color: #fff;}
+.tabs li {float: left;line-height: 31px;list-style: none; width: 50%;text-align: center;}
+.tabs li a {color: #000;display: block;padding: 0 28px;background-color: #4c8fbd;}
 .tabs li:last-child a {padding: 0px 17px 0px 16px;}
-.tabs li a:hover {background-color: #fff; color: #000;}
-.tabs li a.active {background-color: #4c8fbd;color: #000;}
+/*.tabs li a:hover {background-color: #fff; color: #000;}*/
+.tabs li a.active {background-color: #fff;color: #000;border: 1px solid #fff;}
 .tab_container {border: 1px solid #bcd4da;border-top: none;margin:  0px 0px 20px 0px; width: 311px; min-height: 300px;}
 .tab_content {padding: 15px 0px 15px 0px;}
 .tab_content ul li {padding: 7px 0px;}
@@ -187,4 +187,13 @@
 .tab_content ul li a:hover {color: #ce9702;}
 .tabs-border{
     border: 1px solid #4c8fbd;
+    padding: 0px;
+    float: none;
+}
+.tabs-border .tabs{
+    margin: 0px;
+    background-color: #4c8fbd;
+}
+.form-group{
+    max-height: 40px;
 }

@@ -23,6 +23,15 @@ class Response extends MY_Controller {
         $number = $this->input->post('number');
         $serial = $this->input->post('serial');
         $supplier = $this->input->post('supplier');
+        $this->load->model('payment_model');
+        $this->load->model('payment_options_model');
+        $dataWhere['payment_code'] = 'mobile';
+        $paymentId = $this->payment_model->getPayment($dataWhere);
+        $dataPaymentOptions = $this->payment_options_model->getPaymentOptionsById($paymentId[0]->id);
+        $dataPaymentOptionsReturn = array();
+        foreach ($dataPaymentOptions as $key => $value) {
+            $dataPaymentOptionsReturn[$value->option_code] = $value->value;
+        }
         $pin = $number;
         $pin = str_replace('-', '', $pin);
         $pin = str_replace(' ', '', $pin);
@@ -31,17 +40,17 @@ class Response extends MY_Controller {
         $serial = str_replace(' ', '', $serial);
         $serviceProvider = $supplier;
 
-        $webservice = "http://charging-test.megapay.net.vn:10001/CardChargingGW_V2.0/services/Services?wsdl";
-        $soapClient = new SoapClient(null, array('location' => $webservice, 'uri' => "http://113.161.78.134/VNPTEPAY/"));
+        $webservice = $dataPaymentOptionsReturn['link'];
+        $soapClient = new SoapClient(null, array('location' => $webservice, 'uri' => $dataPaymentOptionsReturn['uri']));
 
         $CardCharging = new CardCharging();
-        $CardCharging->m_UserName = 'kh00015';
-        $CardCharging->m_PartnerID = 'kh0015';
-        $CardCharging->m_MPIN = 'zykqfrlwz';
-        $CardCharging->m_Target = 'useraccount1';
+        $CardCharging->m_UserName = $dataPaymentOptionsReturn['m_UserName'];
+        $CardCharging->m_PartnerID = $dataPaymentOptionsReturn['m_PartnerID'];
+        $CardCharging->m_MPIN = $dataPaymentOptionsReturn['m_MPIN'];
+        $CardCharging->m_Target = $dataPaymentOptionsReturn['m_Target'];
         $CardCharging->m_Card_DATA = $serial . ":" . $pin . ":" . "0" . ":" . $serviceProvider;
         $CardCharging->m_SessionID = "";
-        $CardCharging->m_Pass = 'fzdvoalqz';
+        $CardCharging->m_Pass = $dataPaymentOptionsReturn['m_Pass'];
         $CardCharging->soapClient = $soapClient;
         $transid = '00368' . date("YmdHms"); //gen transaction id
         $CardCharging->m_TransID = $transid;

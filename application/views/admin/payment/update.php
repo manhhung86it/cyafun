@@ -4,7 +4,7 @@
 
 </div><!-- /.page-header -->
 <div class="row">
-    <div class="col-xs-12 tabs-border">
+    <div class="col-xs-4 tabs-border center-block">
         <div>
             <ul class="tabs">
                 <li><a href="#Informations" class="active">Informations</a></li>
@@ -24,14 +24,17 @@
                 </div>
             <?php endif; ?>
             <?php if (!empty($success)): ?>
-                <div class="bg-danger">
-                   <?php echo $success; ?>
+                <div class="alert alert-block alert-success">
+                    <button data-dismiss="alert" class="close" type="button">
+                        <i class="ace-icon fa fa-times"></i>
+                    </button>
+                    <?php echo $success ?>
                 </div>
             <?php endif; ?>
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="name">Name *: </label>
                 <div class="col-sm-9">
-                    <input type="text" id="name" autocomplete="off" value="<?php echo!empty($payment['payment_name']) ? $payment['payment_name'] : '' ?>" name="name" placeholder="name" class="col-xs-10 col-sm-5" />
+                    <input type="text" id="name" autocomplete="off" value="<?php echo!empty($payment['payment_name']) ? $payment['payment_name'] : '' ?>" name="name" placeholder="name" />
                 </div>
             </div>
             <div class="space-4"></div>
@@ -39,7 +42,7 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label no-padding-right" for="name">Code *: </label>
                     <div class="col-sm-9">
-                        <input type="text" id="name" autocomplete="off" value="<?php echo!empty($payment['payment_code']) ? $payment['payment_code'] : '' ?>" name="code" placeholder="code" class="col-xs-10 col-sm-5" />
+                        <input type="text" id="name" autocomplete="off" value="<?php echo!empty($payment['payment_code']) ? $payment['payment_code'] : '' ?>" name="code" placeholder="code" />
                     </div>
                 </div>
             </div>
@@ -48,7 +51,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="address1">Rate *: </label>
                 <div class="col-sm-9">
-                    <input type="text" id="address1" autocomplete="off" value="<?php echo!empty($payment['payment_rate']) ? $payment['payment_rate'] : '' ?>" name="rate" placeholder="enter Rate" class="col-xs-10 col-sm-5" />
+                    <input type="text" id="address1" autocomplete="off" value="<?php echo!empty($payment['payment_rate']) ? $payment['payment_rate'] : '' ?>" name="rate" placeholder="enter Rate" />
                 </div>
             </div>
             <div class="space-4"></div>
@@ -56,7 +59,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="address2">Currency *: </label>
                 <div class="col-sm-9">
-                    <input type="text" id="address2" autocomplete="off" value="<?php echo!empty($payment['payment_currency']) ? $payment['payment_currency'] : '' ?>" name="currency" placeholder="enter Currency" class="col-xs-10 col-sm-5" />
+                    <input type="text" id="address2" autocomplete="off" value="<?php echo!empty($payment['payment_currency']) ? $payment['payment_currency'] : '' ?>" name="currency" placeholder="enter Currency"/>
                 </div>
             </div>
             <div class="space-4"></div>
@@ -90,7 +93,7 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label no-padding-right" for="name"><?php echo $key ?> *: </label>
                     <div class="col-sm-9">
-                        <input type="text" id="name" autocomplete="off" value="<?php echo!empty($value) ? $value : '' ?>" name="<?php echo $key ?>" placeholder="<?php echo $key ?>" class="col-xs-10 col-sm-5" required=""/>
+                        <input type="text" id="name" autocomplete="off" value="<?php echo!empty($value) ? $value : '' ?>" name="<?php echo $key ?>" placeholder="<?php echo $key ?>" required=""/>
                     </div>
                 </div>
                 <div class="space-4"></div>
@@ -102,8 +105,8 @@
                 </div>
             </div>
         </form>
-        
-        
+
+
 
     </div><!-- /.col -->
 </div><!-- /.row -->

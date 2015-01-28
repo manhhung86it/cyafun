@@ -66,12 +66,11 @@ class Payment extends MY_Controller {
                 if ($payment) {
                     $this->payment_model->update($dataPayment, $id);
                     $this->session->set_flashdata('success', 'Update Infomations success');
-                    $this->data['success'] = 'Update Infomations success';
-                    redirect('admin/payment/update/' . $id);
+                    redirect('admin/payment');
                 } else {
                     $this->payment_model->insert($dataPayment);
                     $this->session->set_flashdata('success', 'Add Infomations success');
-                    redirect('admin/payment/update');
+                    redirect('admin/payment');
                 }
             } else {
                 $this->data['errors'] = $validate;
@@ -91,11 +90,11 @@ class Payment extends MY_Controller {
                 }
             }
             $this->session->set_flashdata('success', 'Update Options success');
-            redirect('admin/payment/update/' . $id);
+            redirect('admin/payment');
         }
         $this->data['paymentOptions'] = $dataPaymentOption;
         $this->data['payment'] = $dataPayment;
-        $this->load('admin_layout', 'admin/payment/update');
+        $this->load('admin_layout', 'admin/payment');
     }
 
 }
