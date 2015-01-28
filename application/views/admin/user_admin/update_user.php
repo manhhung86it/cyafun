@@ -1,6 +1,5 @@
 <div class="service">
     <!-- Start service -->
-    <div class="container">
         <div class="row">
             <form role="form" method="post" action="" id="form-user-admin-update" class="span8" enctype="multipart/form-data">
                 <div class="col-xs-12">
@@ -114,8 +113,6 @@
         </div>
     </div>
 
-</div>
-<span id="feature"></span>
 </div>
 <script>
     $(document).ready(function() {

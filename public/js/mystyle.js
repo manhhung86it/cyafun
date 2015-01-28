@@ -12,21 +12,3 @@ $(document).ready(function() {
     });
 
 })
-
-//
-//$(function() {
-//    var jcarousel = $('.any-class');
-//
-//    jcarousel
-//            .on('jcarousel:reload jcarousel:create', function() {
-//                var width = jcarousel.innerWidth();
-//
-//                if (width >= 600) {
-//                    width = width / 3;
-//                } else if (width >= 350) {
-//                    width = width / 2;
-//                }
-//
-//                jcarousel.jcarousel('items').css('width', width + 'px');
-//            })
-//});
