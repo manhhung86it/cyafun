@@ -171,9 +171,6 @@ class Setting_manager {
     }
     public function featuresValidate($features, $file, $id = NULL) {
         $error = array();
-        if (empty($features['content'])) {
-            $error['content'] = 'Please enter content';
-        }
         if (empty($features['order'])) {
             $error['order'] = 'Please enter order';
         }

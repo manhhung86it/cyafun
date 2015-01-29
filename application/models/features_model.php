@@ -21,6 +21,19 @@ class Features_model extends CI_Model {
         return $query->row_array();
     }
 
+    function getFrontEnd($page, $limit) {
+        $this->db->select('*');
+        $this->db->from('frontend');
+        $this->db->where('page', $page);
+        if ($limit != 'all') {
+            $this->db->limit($limit);
+        }
+
+        $query = $this->db->get();
+        $lists = $query->result_array();
+        return $lists;
+    }
+
     function update($data, $id) {
         $this->db->where('id', $id);
         $this->db->update('frontend', $data);
@@ -88,6 +101,7 @@ class Features_model extends CI_Model {
         $lists = $query->row_array();
         return $lists['total'];
     }
+
 }
 
 ?>

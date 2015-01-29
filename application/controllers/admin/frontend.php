@@ -10,7 +10,7 @@ if (!defined('BASEPATH'))
 
 class Frontend extends MY_Controller {
 
-    public function __construct() { 
+    public function __construct() {
 
         parent::__construct();
 
@@ -18,71 +18,87 @@ class Frontend extends MY_Controller {
     }
 
     public function index() {
-        $this->load->model('features_model');
-        $dataWhere = '(page = 1 AND status =1)';
-        $order = 'order';
-        $this->data['breadcrumbs'][] = array('title' => 'frontend manager');
-        $features = $this->features_model->listFeatures($dataWhere, null, '*', 4, 0, $order);
-        $this->data['features'] = $features;
-        $this->load('front_layout', 'features');
+        echo "1";
     }
 
-    public function editFeatures() {
+    public function editMenuTop() {
         $this->data['success'] = $this->session->flashdata('success');
-        $this->load('admin_layout', 'admin/frontend/features');
+        $this->load('admin_layout', 'admin/frontend/menuTop');
     }
 
-    public function contactPage() {
-        $posts = $this->input->post();
-        if ($posts) {
-            $data = $posts;
-            $validate = $this->setting_manager->contactValidate($data);
-            if (empty($validate)) {
-                $dataUpdate['name'] = $data['name'];
-                $dataUpdate['email'] = $data['email'];
-                $dataUpdate['phone'] = $data['phone'];
-                $dataUpdate['content'] = $data['content'];
-                $id = $this->features->insert($dataUpdate);
-                $this->session->set_flashdata('success', 'Your Mail has been sent successfully');
-                redirect('features/contactPage');
-            } else {
-                $this->data['data_error'] = $validate;
-            }
-        }
-        $this->load('front_layout', 'contact');
+    public function ajax_list_menu_top() {
+        $page = 'menu_top';
+        $this->ajax_list_frontend($page);
     }
 
-    public function ajax_list_features() {
-        $this->ajax_list_frontend(1);
+    public function update_menu_top($id = 0) {
+        $page = 'menu_top';
+        $this->update_frontend($id, $page);
+        $this->load('admin_layout', 'admin/frontend/updateMenuTop');
     }
 
-    public function update_features($id = 0) {
-        $this->update_frontend($id, 1);
-        $this->load('admin_layout', 'admin/frontend/update_features');
-    }
-
-    public function aboutPage() {
-//        $this->user_manager->authenticate();
-        $this->load->model('features_model');
-        $dataWhere = '(page = 2 AND status =1)';
-        $order = 'order';
-        $features = $this->features_model->listFeatures($dataWhere, null, '*', 4, 0, $order);
-        $this->data['features'] = $features;
-        $this->load('front_layout', 'aboutpage');
-    }
-
-    public function editAboutPage() {
+    public function editMenuSecond() {
         $this->data['success'] = $this->session->flashdata('success');
-        $this->load('admin_layout', 'admin/frontend/aboutpage');
+        $this->load('admin_layout', 'admin/frontend/menuSecond');
     }
 
-    public function ajax_list_AboutPage() {
-        $this->ajax_list_frontend(2);
+    public function ajax_list_menu_second() {
+        $page = 'menu_second';
+        $this->ajax_list_frontend($page);
     }
 
-    public function updateAboutPage($id = 0) {
-        $this->update_frontend($id, 2);
-        $this->load('admin_layout', 'admin/frontend/update_aboutPage');
+    public function update_menu_second($id = 0) {
+        $page = 'menu_second';
+        $this->update_frontend($id, $page);
+        $this->load('admin_layout', 'admin/frontend/updateMenuSecond');
+    }
+    
+     public function editGameFocus() {
+        $this->data['success'] = $this->session->flashdata('success');
+        $this->load('admin_layout', 'admin/frontend/gameFocus');
+    }
+
+    public function ajax_list_Game_Focus() {
+        $page = 'gameFocus';
+        $this->ajax_list_frontend($page);
+    }
+
+    public function update_Game_Focus($id = 0) {
+        $page = 'gameFocus';
+        $this->update_frontend($id, $page);
+        $this->load('admin_layout', 'admin/frontend/updateGameFocus');
+    }
+    
+     public function editRecommendGame() {
+        $this->data['success'] = $this->session->flashdata('success');
+        $this->load('admin_layout', 'admin/frontend/RecommendGame');
+    }
+
+    public function ajax_list_Recommend_Game() {
+        $page = 'RecommendGame';
+        $this->ajax_list_frontend($page);
+    }
+
+    public function update_Recommend_Game($id = 0) {
+        $page = 'RecommendGame';
+        $this->update_frontend($id, $page);
+        $this->load('admin_layout', 'admin/frontend/updateRecommendGame');
+    }
+    
+     public function editNews() {
+        $this->data['success'] = $this->session->flashdata('success');
+        $this->load('admin_layout', 'admin/frontend/News');
+    }
+
+    public function ajax_list_News() {
+        $page = 'News';
+        $this->ajax_list_frontend($page);
+    }
+
+    public function update_News($id = 0) {
+        $page = 'News';
+        $this->update_frontend($id, $page);
+        $this->load('admin_layout', 'admin/frontend/updateNews');
     }
 
     public function ajax_list_frontend($page) {
@@ -93,7 +109,7 @@ class Frontend extends MY_Controller {
         $sort = $this->input->get_post('sSortDir_0', TRUE);
 
         $this->load->model('features_model', 'features');
-        $dataWhere = '(page = ' . $page . ')';
+        $dataWhere = "(page = '{$page}')";
         if (!empty($search)) {
             $dataWhere .= " AND (id  like '%{$search}%')";
         }
@@ -113,6 +129,7 @@ class Frontend extends MY_Controller {
                 'image' => $frontend['image'],
                 'content' => $frontend['content'],
                 'order' => $frontend['order'],
+                'link' => $frontend['link'],
                 'action' => 1);
             $jsonArray['aaData'][] = $data;
         }
@@ -140,6 +157,7 @@ class Frontend extends MY_Controller {
                 'content' => $features['content'],
                 'order' => $features['order'],
                 'title' => $features['title'],
+                'link' => $features['link'],
             );
         }
         $posts = $this->input->post();
@@ -157,6 +175,7 @@ class Frontend extends MY_Controller {
                     $dataUpdate['content'] = $dataFeatures['content'];
                     $dataUpdate['order'] = $dataFeatures['order'];
                     $dataUpdate['title'] = $dataFeatures['title'];
+                    $dataUpdate['link'] = $dataFeatures['link'];
                     $this->features->update($dataUpdate, $id);
                     if (!empty($file)) {
                         $name = $id . $file["name"];
@@ -165,13 +184,26 @@ class Frontend extends MY_Controller {
                             $this->features->update($dataImage, $id);
                         }
                     }
-
-                    if ($page == 1)
-                        $this->session->set_flashdata('success', 'Update Features success');
-                    redirect('admin/features/editFeatures');
-                    if ($page == 2)
-                        $this->session->set_flashdata('success', 'Update Abouts  success');
-                    redirect('admin/features/editAboutPage');
+                    if ($page == 'menu_top') {
+                        $this->session->set_flashdata('success', 'Update Menu top success');
+                        redirect('admin/frontend/editMenuTop');
+                    }
+                    if ($page == 'menu_second') {
+                        $this->session->set_flashdata('success', 'Update Menu second  success');
+                        redirect('admin/frontend/editMenuSecond');
+                    }
+                    if ($page == 'gameFocus') {
+                        $this->session->set_flashdata('success', 'Update game  success');
+                        redirect('admin/frontend/editGameFocus');
+                    }
+                    if ($page == 'RecommendGame') {
+                        $this->session->set_flashdata('success', 'Update recommend game  success');
+                        redirect('admin/frontend/editRecommendGame');
+                    }
+                    if ($page == 'News') {
+                        $this->session->set_flashdata('success', 'Update News  success');
+                        redirect('admin/frontend/editNews');
+                    }
                 } else {
                     $this->data['data_error'] = $validate;
                 }
@@ -183,6 +215,7 @@ class Frontend extends MY_Controller {
                     $dataInsert['order'] = $dataFeatures['order'];
                     $dataInsert['status'] = $dataFeatures['status'];
                     $dataInsert['title'] = $dataFeatures['title'];
+                    $dataInsert['link'] = $dataFeatures['link'];
                     $id = $this->features->insert($dataInsert);
                     if (!empty($file)) {
                         $name = $id . $file["name"];
@@ -192,12 +225,26 @@ class Frontend extends MY_Controller {
                         }
                     }
 
-                    if ($page == 1)
-                        $this->session->set_flashdata('success', 'Insert Features success');
-                    redirect('admin/features/editFeatures');
-                    if ($page == 2)
-                        $this->session->set_flashdata('success', 'Insert Abouts success');
-                    redirect('admin/features/editAboutPage');
+                    if ($page == 'menu_top') {
+                        $this->session->set_flashdata('success', 'Insert Menu Top success');
+                        redirect('admin/frontend/editMenuTop');
+                    }
+                    if ($page == 'menu_second') {
+                        $this->session->set_flashdata('success', 'Insert Menu Second success');
+                        redirect('admin/frontend/editMenuSecond');
+                    }
+                    if ($page == 'gameFocus') {
+                        $this->session->set_flashdata('success', 'Insert game success');
+                        redirect('admin/frontend/editGameFocus');
+                    }
+                    if ($page == 'RecommendGame') {
+                        $this->session->set_flashdata('success', 'Insert recommend game  success');
+                        redirect('admin/frontend/editRecommendGame');
+                    }
+                    if ($page == 'News') {
+                        $this->session->set_flashdata('success', 'Insert News  success');
+                        redirect('admin/frontend/editNews');
+                    }
                 } else {
                     $this->data['data_error'] = $validate;
                 }
@@ -217,41 +264,6 @@ class Frontend extends MY_Controller {
             );
             $this->features->delete(array('id' => $id));
         }
-    }
-    
-    
-    // contact page
-    public function editContactsPage() {
-        $this->load->model('contact_model', 'contact');
-        $this->load->library('setting_manager');
-        $dataContact = array();
-        $contact = $this->contact->getContactPages(3);
-        $dataContact = array(
-            'id' => $contact['id'],
-            'page' => $contact['page'],
-            'status' => $contact['status'],
-            'image' => $contact['image'],
-            'content' => $contact['content'],
-            'order' => $contact['order'],
-            'title' => $contact['title'],
-        );
-        $posts = $this->input->post();
-        if ($posts) {
-            $dataContact = $posts;
-            $validate = $this->setting_manager->contactPageValidate($dataContact);
-            if (empty($validate)) {
-                $dataUpdate['content'] = $dataContact['content'];
-                $dataUpdate['title'] = $dataContact['title'];
-                $this->contact->updateContactPage($dataUpdate, 3);
-//                $this->data['success'] = 'Update Contact Page success';
-                $this->session->set_flashdata('success', 'Update Contact Page success');
-                redirect('admin/features/editContactsPage');
-            } else {
-                $this->data['data_error'] = $validate;
-            }
-        }
-        $this->data['contact'] = $dataContact;
-        $this->load('admin_layout', 'admin/frontend/update_contactPage');
     }
 
 }

@@ -21,7 +21,19 @@ class Welcome extends MY_Controller {
      * @see http://codeigniter.com/user_guide/general/urls.html
      */
     public function index() {
-        //$this->user_manager->login_authenticate();
+        $this->load->model('features_model');
+        $sliderTop = $this->features_model->getFrontEnd('menu_top','all');
+        $sliderSecond = $this->features_model->getFrontEnd('menu_second','all');
+        $gameFocus = $this->features_model->getFrontEnd('gameFocus','1');
+        $recommendGame = $this->features_model->getFrontEnd('RecommendGame','all');
+        $news = $this->features_model->getFrontEnd('News','all');
+        
+        $this->data['sliderTop']  = $sliderTop;
+        $this->data['sliderSecond']  = $sliderSecond;
+        $this->data['gameFocus']  = $gameFocus;
+        $this->data['recommendGame']  = $recommendGame;
+        $this->data['news']  = $news;
+        
         $this->data['title']  = 'Cya fun';
         $this->load('front_layout', 'welcome_message');
     }

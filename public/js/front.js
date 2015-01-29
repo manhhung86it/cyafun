@@ -736,5 +736,8 @@ function delete_contact(id) {
     }
 }
 tinymce.init({
+    forced_root_block: "",
+    force_br_newlines: true,
+    force_p_newlines: false,
     selector: "textarea:not(.textarea-no-styles)"
 });
