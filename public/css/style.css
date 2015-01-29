@@ -200,3 +200,19 @@
 .tabs-border .form-group input{
     width: 90%;
 }
+input[type="file"]{
+    border-radius: 0 !important;
+    color: #858585;
+    background-color: #fff;
+    border: 1px solid #d5d5d5;
+    padding: 5px 4px 6px;
+    font-size: 14px;
+    font-family: inherit;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    -webkit-transition-duration: .1s;
+    transition-duration: .1s;
+}
+#mceu_41{
+    width: 98%;
+}

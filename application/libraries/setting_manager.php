@@ -64,6 +64,10 @@ class Setting_manager {
 
             $error['currency'] = 'Please input currency';
         }
+        if (empty($data['description'])) {
+
+            $error['description'] = 'Please input description';
+        }
         if (!empty($data['rate']) && !is_numeric($data['rate'])) {
             $error['rate'] = 'Please enter valid rate';
         }

@@ -50,24 +50,46 @@ class Payment extends MY_Controller {
             $dataPayment['payment_rate'] = $payment['payment_rate'];
             $dataPayment['payment_currency'] = $payment['payment_currency'];
             $dataPayment['payment_status'] = $payment['payment_status'];
+            $dataPayment['logo'] = $payment['logo'];
+            $dataPayment['description'] = $payment['description'];
             $this->data['title'] = 'Update Payment';
         }
         $data = $this->input->post();
+        $dir = PUBLICPATH . '/upload/';
+
         if (isset($_POST['submit_information'])) {
             $dataInsert = $this->input->post();
+            $file = $_FILES['logo'];
+            if (!empty($file))
+                $tmp_name = $file["tmp_name"];
             $validate = $this->setting_manager->paymentValidate($dataInsert);
             $dataPayment['payment_code'] = $dataInsert['code'];
             $dataPayment['payment_name'] = $dataInsert['name'];
             $dataPayment['payment_rate'] = $dataInsert['rate'];
             $dataPayment['payment_currency'] = $dataInsert['currency'];
+            $dataPayment['description'] = $dataInsert['description'];
             $dataPayment['payment_status'] = !empty($dataInsert['status']) ? 1 : 0;
             if (empty($validate)) {
                 if ($payment) {
                     $this->payment_model->update($dataPayment, $id);
+                    if (!empty($file)) {
+                        $name = $id . $file["name"];
+                        if (move_uploaded_file($tmp_name, "$dir/$name")) {
+                            $dataImage['logo'] = $name;
+                            $this->payment_model->update($dataImage, $id);
+                        }
+                    }
                     $this->session->set_flashdata('success', 'Update Infomations success');
                     redirect('admin/payment');
                 } else {
                     $this->payment_model->insert($dataPayment);
+                    if (!empty($file)) {
+                        $name = $id . $file["name"];
+                        if (move_uploaded_file($tmp_name, "$dir/$name")) {
+                            $dataImage['logo'] = $name;
+                            $this->payment_model->update($dataImage, $id);
+                        }
+                    }
                     $this->session->set_flashdata('success', 'Add Infomations success');
                     redirect('admin/payment');
                 }
