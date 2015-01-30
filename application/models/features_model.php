@@ -25,6 +25,7 @@ class Features_model extends CI_Model {
         $this->db->select('*');
         $this->db->from('frontend');
         $this->db->where('page', $page);
+        $this->db->where('status', '1');
         if ($limit != 'all') {
             $this->db->limit($limit);
         }
